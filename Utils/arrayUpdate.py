@@ -38,7 +38,6 @@ for input_file in sys.argv[2:]:
     if get_file_extension(input_file)=="c":
         data = re.sub(r'#define elems .*', f'#define elems {new_array_str}', data)
     elif get_file_extension(input_file)=="py":
-        arr = [64, 34, 25, 12, 22, 11, 90]
         data = re.sub(r'array =.*', f'array = [{new_array_str}]', data)
     # Write the updated file
     with open(input_file, 'w') as f:
