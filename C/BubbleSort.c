@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define elems 90968,90352,50207,67300,63969
+
 int swapped = 0; // global variable to check if swap() function is called
 
 void swap(int *a, int *b)
@@ -29,7 +31,7 @@ int bubblesort(int *a, int size) // to demonstrate passing by refference in C (p
 
 int main(){
     int n, i;
-    int arr[] = {64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11};
+    int arr[] = {elems};
     int size = sizeof(arr) / sizeof(arr[0]);
 
     bubblesort(arr,size);

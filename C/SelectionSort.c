@@ -2,6 +2,7 @@
 
 // C program for implementation of selection sort
 #include <stdio.h>
+#define elems 56360,89617,5107,24296,33331
 
 void swap(int *xp, int *yp)
 {
@@ -41,7 +42,7 @@ void printArray(int arr[], int size)
 // Driver program to test above functions
 int main()
 {
-    int arr[] = {64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11};
+    int arr[] = {elems };
     int n = sizeof(arr) / sizeof(arr[0]);
     selectionSort(arr, n);
     printf("Sorted array: \n");

@@ -23,9 +23,9 @@ def bubble_sort(arr):
             break
 
 
-arr = [64, 34, 25, 12, 22, 11, 90]
+array = [62087,62768,16765,94743,31460]
 
-print('Array:', arr)
+print('Array:', array)
 
-bubble_sort(arr)
-print('Sorted array:', arr)
+bubble_sort(array)
+print('Sorted array:', array)
