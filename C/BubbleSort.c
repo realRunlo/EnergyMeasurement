@@ -29,9 +29,8 @@ int bubblesort(int *a, int size) // to demonstrate passing by refference in C (p
 
 int main(){
     int n, i;
-    int *a = NULL; // security issue 
-    int size = 7;
-    int arr[7] = {64, 34, 25, 12, 22, 11, 90};
+    int arr[] = {64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11};
+    int size = sizeof(arr) / sizeof(arr[0]);
 
     bubblesort(arr,size);
     printf("\nSorted list:\n"); // Display the sorted array

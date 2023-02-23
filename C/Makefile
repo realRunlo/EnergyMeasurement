@@ -22,6 +22,6 @@ mem:
 	{ /usr/bin/time -v ./SelectionSort  > /dev/null; } 2>&1 | grep "Maximum resident" #| sed "s/[^0-9]\+\([0-9]\+\).*/\1/"cd
 
 clean:
-	rm -rf BubbleSort *.o
-	rm -rf QuickSort *.o
-	rm -rf SelectionSort *.o
+	rm -rf BubbleSort *.o *.J
+	rm -rf QuickSort *.o *.J
+	rm -rf SelectionSort *.o *.J

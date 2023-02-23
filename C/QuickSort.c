@@ -43,11 +43,10 @@ void printArray(int arr[], int size) {
     printf("\n");
 }
 
-int main() 
-{
-    int arr[] = {10, 7, 8, 9, 1, 5};
-    int n = sizeof(arr)/sizeof(arr[0]);
-    quicksort(arr, 0, n-1);
+int main(){
+    int arr[] = {64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    quicksort(arr, 0, n - 1);
     printf("Sorted array: ");
     printArray(arr, n);
     return 0;
