@@ -1,6 +1,6 @@
 //Source ChatGPT
 #include <stdio.h>
-
+#define elems 83380,20249,86136,78444,5039
 // function to swap two elements
 void swap(int* a, int* b) {
     int temp = *a;
@@ -44,7 +44,7 @@ void printArray(int arr[], int size) {
 }
 
 int main(){
-    int arr[] = {64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11, 90, 64, 34, 25, 12, 22, 11};
+    int arr[] = {elems};
     int n = sizeof(arr) / sizeof(arr[0]);
     quicksort(arr, 0, n - 1);
     printf("Sorted array: ");

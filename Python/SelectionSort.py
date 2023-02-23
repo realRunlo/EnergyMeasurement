@@ -2,24 +2,24 @@
 
 # Python program for implementation of Selection Sort
 import sys
-A = [64, 25, 12, 22, 11]
+array = [22093,34423,17506,891,40765]
   
 # Traverse through all array elements
-for i in range(len(A)):
+for i in range(len(array)):
       
     # Find the minimum element in remaining 
     # unsorted array
     min_idx = i
-    for j in range(i+1, len(A)):
-        if A[min_idx] > A[j]:
+    for j in range(i+1, len(array)):
+        if array[min_idx] > array[j]:
             min_idx = j
               
     # Swap the found minimum element with 
     # the first element        
-    A[i], A[min_idx] = A[min_idx], A[i]
+    array[i], array[min_idx] = array[min_idx], array[i]
   
 # Driver code to test above
 print ("Sorted array")
-for i in range(len(A)):
-    print("%d" %A[i],end=" ") 
+for i in range(len(array)):
+    print("%d" %array[i],end=" ") 
 print()
