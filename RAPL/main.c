@@ -52,7 +52,7 @@ int main (int argc, char **argv)
   fp = fopen(res,"w");
   rapl_init(core);
 
-  fprintf(fp,"Program, Package , Core(s) , GPU , DRAM? , Time (sec) \n");
+  fprintf(fp,"Program, Package , Core(s) , GPU , DRAM? , Time (ms) \n");
 
   
   for (i = 0 ; i < ntimes ; i++)
