@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Source: https://www.geeksforgeeks.org/quick-sort/
 
 
@@ -47,7 +49,7 @@ def quick_sort(array, low, high):
 
 
 # Driver code
-array = [10, 7, 8, 9, 1, 5]
+array = [10, 7, 8, 9, 1, 5, 10, 7, 8, 9, 1, 5, 10, 7, 8, 9, 1, 5, 10, 7, 8, 9, 1, 5, 10, 7, 8, 9, 1, 5, 10, 7, 8, 9, 1, 5, 10, 7, 8, 9, 1, 5, 10, 7, 8, 9, 1, 5,10, 7, 8, 9, 1, 5,10, 7, 8, 9, 1, 5,10, 7, 8, 9, 1, 5,10, 7, 8, 9, 1, 5,10, 7, 8, 9, 1, 5,10, 7, 8, 9, 1, 5,10, 7, 8, 9, 1, 5,10, 7, 8, 9, 1, 5,10, 7, 8, 9, 1, 5,10, 7, 8, 9, 1, 5]
 quick_sort(array, 0, len(array) - 1)
 
 print(f'Sorted array: {array}')

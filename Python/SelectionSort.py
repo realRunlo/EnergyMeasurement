@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Source: https://www.geeksforgeeks.org/selection-sort/
 
 # Python program for implementation of Selection Sort

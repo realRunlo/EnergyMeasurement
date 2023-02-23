@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 def bubble_sort(arr):
     n = len(arr)
 
@@ -21,10 +23,9 @@ def bubble_sort(arr):
             break
 
 
-if __name__ == '__main__':
-    arr = [64, 34, 25, 12, 22, 11, 90]
+arr = [64, 34, 25, 12, 22, 11, 90]
 
-    print('Array:', arr)
+print('Array:', arr)
 
-    bubble_sort(arr)
-    print('Sorted array:', arr)
+bubble_sort(arr)
+print('Sorted array:', arr)
