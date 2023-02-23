@@ -26,13 +26,13 @@ def get_file_extension(filename):
     return split_filename[-1]
 
 
+new_array = generate_random_array(int(sys.argv[1]))
 # Iterate over the input files
 for input_file in sys.argv[2:]:
 
     with open(input_file, 'r') as f:
         data = f.read()
 
-    new_array = generate_random_array(int(sys.argv[1]))
     new_array_str = ','.join(str(x) for x in new_array)
 
     if get_file_extension(input_file)=="c":
