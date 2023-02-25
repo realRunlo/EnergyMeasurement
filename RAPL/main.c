@@ -11,6 +11,7 @@
 #include <time.h>
 #include <math.h>
 #include "rapl.h"
+#include "sensors.h"
 
 #define RUNTIME
 
@@ -56,7 +57,13 @@ int main (int argc, char **argv)
 
   
   for (i = 0 ; i < ntimes ; i++)
-    {   sleep(1);                                    // sleep 1 second
+    {   //sleep(1);                                    // sleep 1 second CHANGED
+        while (getTemperature()>45) //NEW
+        {
+          printf("Sleeping\n");
+          sleep(1);
+        }
+
         fprintf(fp,"%s , ",argv[1]);
         rapl_before(fp,core);
       

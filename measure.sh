@@ -1,5 +1,9 @@
 #!/bin/bash
 
+cd RAPL/
+make
+cd ..
+
 echo "Size ,Language ,Program ,Package ,Core(s) ,GPU ,DRAM? ,Time (ms)" > measurements.csv
 
 # Loop over size values
@@ -34,6 +38,10 @@ do
     cd ..
 
 done
+
+cd RAPL/
+make clean
+cd ..
 
 awk -F',' 'BEGIN{OFS=","} {print $2, $3, $1, $4, $5, $6, $7, $8}' measurements.csv > tmp.csv
 mv tmp.csv measurements.csv
