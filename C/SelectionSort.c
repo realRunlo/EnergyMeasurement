@@ -2,7 +2,7 @@
 
 // C program for implementation of selection sort
 #include <stdio.h>
-#define elems 56360,89617,5107,24296,33331
+#define elems 91852,10152,33191,56826,21758,39403,77225,95936,50724,14826
 
 void swap(int *xp, int *yp)
 {

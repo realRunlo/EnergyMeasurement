@@ -49,7 +49,7 @@ def quick_sort(array, low, high):
 
 
 # Driver code
-array = [48362,77296,37532,11802,10124]
+array = [91852,10152,33191,56826,21758,39403,77225,95936,50724,14826]
 quick_sort(array, 0, len(array) - 1)
 
 print(f'Sorted array: {array}')

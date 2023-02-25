@@ -4,7 +4,7 @@
 
 # Python program for implementation of Selection Sort
 import sys
-array = [22093,34423,17506,891,40765]
+array = [91852,10152,33191,56826,21758,39403,77225,95936,50724,14826]
   
 # Traverse through all array elements
 for i in range(len(array)):

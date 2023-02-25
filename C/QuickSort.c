@@ -1,6 +1,6 @@
 //Source ChatGPT
 #include <stdio.h>
-#define elems 83380,20249,86136,78444,5039
+#define elems 91852,10152,33191,56826,21758,39403,77225,95936,50724,14826
 // function to swap two elements
 void swap(int* a, int* b) {
     int temp = *a;

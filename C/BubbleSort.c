@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define elems 90968,90352,50207,67300,63969
+#define elems 91852,10152,33191,56826,21758,39403,77225,95936,50724,14826
 
 int swapped = 0; // global variable to check if swap() function is called
 
