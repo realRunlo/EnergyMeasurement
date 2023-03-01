@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <powercap/powercap.h>
+#include <raplcap/raplcap.h>
 #include <math.h>
 #include "rapl.h"
 #include "sensors.h"
@@ -31,6 +33,61 @@ int main (int argc, char **argv)
 #endif
   
   FILE * fp;
+
+  //RAPLCAP
+  raplcap rc;
+  raplcap_limit rl_short, rl_long;
+  uint32_t q, j, n, d;
+  
+  // get the number of RAPL packages
+  n = raplcap_get_num_packages(NULL);
+  if (n == 0) {
+    perror("raplcap_get_num_packages");
+    return -1;
+  }
+
+  // initialize
+  if (raplcap_init(&rc)) {
+    perror("raplcap_init");
+    return -1;
+  }
+
+  // assuming each package has the same number of die, only querying for package=0
+  d = raplcap_get_num_die(&rc, 0);
+  if (d == 0) {
+    perror("raplcap_get_num_die");
+    raplcap_destroy(&rc);
+    return -1;
+  }
+
+  // for each package die, set a power cap of 100 Watts for short_term and 50 Watts for long_term constraints
+  // a time window of 0 leaves the time window unchanged
+  rl_short.watts = 100.0;
+  rl_short.seconds = 0.0;
+  rl_long.watts = 50.0;
+  rl_long.seconds = 0.0;
+  for (q = 0; q < n; q++) {
+    for (j = 0; j < d; j++) {
+      if (raplcap_pd_set_limits(&rc, q, j, RAPLCAP_ZONE_PACKAGE, &rl_long, &rl_short)) {
+        perror("raplcap_pd_set_limits");
+      }
+    }
+  }
+
+  // for each package die, enable the power caps
+  // this could be done before setting caps, at the risk of enabling unknown power cap values first
+  for (q = 0; q < n; q++) {
+    for (j = 0; j < d; j++) {
+      if (raplcap_pd_set_zone_enabled(&rc, q, j, RAPLCAP_ZONE_PACKAGE, 1)) {
+        perror("raplcap_pd_set_zone_enabled");
+      }
+    }
+  }
+  //RAPLCAP
+
+
+
+
 
   // printf("Program to be executed: %d",argc);
   //strcpy( command, "./" );
@@ -58,7 +115,7 @@ int main (int argc, char **argv)
   
   for (i = 0 ; i < ntimes ; i++)
     {   //sleep(1);                                    // sleep 1 second CHANGED
-        while (getTemperature()>45) //NEW
+        while (getTemperature()>50) //NEW
         {
           printf("Sleeping\n");
           sleep(1);
@@ -93,6 +150,10 @@ int main (int argc, char **argv)
   fclose(fp);
   fflush(stdout);
 
+  // cleanup
+  if (raplcap_destroy(&rc)) {
+    perror("raplcap_destroy");
+  }
   return 0;
 }
 
