@@ -10,6 +10,7 @@ Bibliotecas necessárias:
 4. Raplcap
 
 Para instalar as bibliotecas necessárias correr a script:
+
 ```sh setup.sh```
 
 Para gerar o csv correr a script:
