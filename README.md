@@ -11,7 +11,7 @@ Bibliotecas necessárias:
 
 Para instalar as bibliotecas necessárias correr a script:
 
-```sh setup.sh```
+```sudo sh setup.sh```
 
 Para gerar o csv correr a script:
 
