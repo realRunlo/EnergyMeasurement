@@ -15,6 +15,11 @@
 #include "rapl.h"
 #include "sensors.h"
 
+#define TEMPERATURETHRESHOLD 33.0
+#define SHORTWATTS 100.0
+#define SHORTTIME 0.0
+#define LONGWHATTS 50.0
+#define LONGTIME 0.0
 #define RUNTIME
 
 
@@ -62,10 +67,10 @@ int main (int argc, char **argv)
 
   // for each package die, set a power cap of 100 Watts for short_term and 50 Watts for long_term constraints
   // a time window of 0 leaves the time window unchanged
-  rl_short.watts = 100.0;
-  rl_short.seconds = 0.0;
-  rl_long.watts = 50.0;
-  rl_long.seconds = 0.0;
+  rl_short.watts = SHORTWATTS;
+  rl_short.seconds = SHORTTIME;
+  rl_long.watts = LONGWHATTS;
+  rl_long.seconds = LONGTIME;
   for (q = 0; q < n; q++) {
     for (j = 0; j < d; j++) {
       if (raplcap_pd_set_limits(&rc, q, j, RAPLCAP_ZONE_PACKAGE, &rl_long, &rl_short)) {
@@ -112,10 +117,10 @@ int main (int argc, char **argv)
 
   fprintf(fp,"Program, Package , Core(s) , GPU , DRAM? , Time (ms) \n");
 
-  
+  int maxTrys = 5;
   for (i = 0 ; i < ntimes ; i++)
-    {   //sleep(1);                                    // sleep 1 second CHANGED
-        while (getTemperature()>50) //NEW
+    {
+        for (int currentTrys = 0; currentTrys < maxTrys && getTemperature()>TEMPERATURETHRESHOLD; currentTrys++) //NEW
         {
           printf("Sleeping\n");
           sleep(1);

@@ -1,7 +1,20 @@
 #!/bin/bash
 
+#Compile sensors wich will be used to calculate cool temperature
+cd RAPL
+gcc -shared -o sensors.so sensors.c
+cd ..
+
+#Update the temperature value
+cd Utils/
+python3 temperatureUpdate.py
+cd ..
+
+#Make RAPL lib
 cd RAPL/
+rm sensors.so
 make
+
 cd ..
 
 echo "Size ,Language ,Program ,Package ,Core(s) ,GPU ,DRAM? ,Time (ms)" > measurements.csv

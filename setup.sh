@@ -8,7 +8,7 @@ git clone https://github.com/powercap/powercap.git
 cd powercap
 mkdir _build
 cd _build
-cmake
+cmake ..
 make
 make install
 
@@ -23,6 +23,6 @@ git clone https://github.com/powercap/raplcap.git
 cd raplcap 
 mkdir _build
 cd _build
-cmake
+cmake ..
 make
 make install
