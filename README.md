@@ -6,3 +6,9 @@ Grupo: 10
 Para gerar o csv com os gastos de energia correr a script:
 
 ```sh measurements.sh```
+
+Bibliotecas necessárias:
+1. RAPL
+2. lm-sensors
+3. Powercap
+4. Raplcap
