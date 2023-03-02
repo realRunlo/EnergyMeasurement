@@ -1,5 +1,11 @@
 echo "Setting up dependencies..."
 
+echo "#### Installing Git"
+sudo apt install git
+
+echo "#### Installing CMake"
+sudo apt install cmake
+
 echo "#### Installing lm-sensors"
 sudo apt install lm−sensors
 
