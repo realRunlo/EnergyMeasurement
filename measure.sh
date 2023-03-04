@@ -17,7 +17,7 @@ make
 
 cd ..
 
-echo "Size ,Language ,Program ,Package ,Core(s) ,GPU ,DRAM? ,Time (ms)" > measurements.csv
+echo " Size ,Language , Program , Package , Core(s) , GPU , DRAM? , Time (ms)" > measurements.csv
 
 # Loop over size values
 for size in 10 100 1000
@@ -34,7 +34,7 @@ do
 
     # Append C measurement results to CSV file with size column
     for file in *.J;
-        do tail -n +2 -q "$file" | sed "s/^/$size,C,/" | sed "s/C_//" >> ../measurements.csv; 
+        do tail -n +2 -q "$file" | sed "s/^/ $size ,C ,/" | sed "s/C_//" >> ../measurements.csv; 
     done
     make clean
     cd ..
@@ -45,7 +45,17 @@ do
 
     # Append Python measurement results to CSV file with size column
     for file in *.J;
-        do tail -n +2 -q "$file" | sed "s/^/$size,Python,/" | sed "s/.py//" >> ../measurements.csv; 
+        do tail -n +2 -q "$file" | sed "s/^/ $size ,Python ,/" | sed "s/.py//" >> ../measurements.csv; 
+    done
+    make clean
+
+    # Build and measure Haskell programs
+    cd Haskell/
+    make measure 
+
+    # Append Haskell measurement results to CSV file with size column
+    for file in *.J;
+        do tail -n +2 -q "$file" | sed "s/^/ $size ,Haskell ,/" | sed "s/.py//" >> ../measurements.csv; 
     done
     make clean
     cd ..
