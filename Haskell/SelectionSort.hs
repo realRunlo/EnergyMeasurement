@@ -19,5 +19,5 @@ main = do
   let unsortedList = [3, 2, 1, 5, 4]
 
   let sortedList = selectionSort unsortedList
-  putStrLn "\nSelection Sorted List:"
-  print sortedList
+  putStrLn "Length of Selection Sorted List:"
+  print (length (sortedList))
