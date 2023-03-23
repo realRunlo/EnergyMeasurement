@@ -1,4 +1,5 @@
 #!/bin/bash
+NTIMES=50
 
 #Compile sensors wich will be used to calculate cool temperature
 cd RAPL
@@ -8,6 +9,10 @@ cd ..
 #Update the temperature value
 cd Utils/
 python3 temperatureUpdate.py
+
+#Update the number of times the program will run on each case
+python3 ntimesUpdate.py $NTIMES ../Pypthon/Makefile ../C/Makefile ../Haskell/Makefile
+
 cd ..
 
 #Make RAPL lib
@@ -17,7 +22,7 @@ make
 
 cd ..
 
-echo " Size ,Language , Program , Package , Core(s) , GPU , DRAM? , Time (ms)" > measurements.csv
+echo "Size ,Language ,Program ,Package ,Core ,GPU ,DRAM ,Time (ms)" > measurements.csv
 
 # Loop over size values
 for size in 10 100 1000
