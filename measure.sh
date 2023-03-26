@@ -11,7 +11,7 @@ cd Utils/
 python3 temperatureUpdate.py
 
 #Update the number of times the program will run on each case
-python3 ntimesUpdate.py $NTIMES ../Pypthon/Makefile ../C/Makefile ../Haskell/Makefile
+python3 ntimesUpdate.py $NTIMES ../Python/Makefile ../C/Makefile ../Haskell/Makefile
 
 cd ..
 
@@ -21,8 +21,8 @@ rm sensors.so
 make
 
 cd ..
-
-echo "Size ,Language ,Program ,Package ,Core ,GPU ,DRAM ,Time (ms)" > measurements.csv
+      
+echo "Size ,Language ,Program ,Package ,Core ,GPU ,DRAM ,Time (ms) ,Temperature" > measurements.csv
 
 # Loop over size values
 for size in 10 100 1000
@@ -71,5 +71,5 @@ cd RAPL/
 make clean
 cd ..
 
-awk -F',' 'BEGIN{OFS=","} {print $2, $3, $1, $4, $5, $6, $7, $8}' measurements.csv > tmp.csv
+awk -F',' 'BEGIN{OFS=","} {print $2, $3, $1, $4, $5, $6, $7, $8, $9}' measurements.csv > tmp.csv
 mv tmp.csv measurements.csv

@@ -15,7 +15,7 @@
 #include "rapl.h"
 #include "sensors.h"
 
-#define TEMPERATURETHRESHOLD 33.0
+#define TEMPERATURETHRESHOLD 41.83333206176758
 #define SHORTWATTS 100.0
 #define SHORTTIME 0.0
 #define LONGWHATTS 50.0
@@ -115,18 +115,27 @@ int main (int argc, char **argv)
   fp = fopen(res,"w");
   rapl_init(core);
 
-  fprintf(fp,"Program, Package , Core(s) , GPU , DRAM? , Time (ms) \n");
+  fprintf(fp,"Program, Package , Core(s) , GPU , DRAM? , Time (ms) , Temperature \n");
 
   int maxTrys = 5;
+  float temperature;
+  char str_temp[20];
+  
   for (i = 0 ; i < ntimes ; i++)
     {
-        for (int currentTrys = 0; currentTrys < maxTrys && getTemperature()>TEMPERATURETHRESHOLD; currentTrys++) //NEW
+      temperature = getTemperature();
+      printf("TEMP: %.1f\n", temperature);
+
+      sprintf(str_temp, "%.1f", temperature);
+      printf("TEMP_str: %s\n", str_temp);
+      for (int currentTrys = 0; currentTrys < maxTrys && temperature>TEMPERATURETHRESHOLD; currentTrys++) //NEW
         {
           printf("Sleeping\n");
           sleep(1);
         }
 
         fprintf(fp,"%s , ",argv[1]);
+        fprintf(fp, "%s , ", str_temp); //CORRIGIR: imprime valor errado da temperatura
         rapl_before(fp,core);
       
 #ifdef RUNTIME
@@ -134,7 +143,11 @@ int main (int argc, char **argv)
 	gettimeofday(&tvb, 0);
 #endif
 	
-        system(command);
+    int status = system(command);
+    if (status != 0) {
+        printf("Error executing command: %s\n", command);
+        return -1;
+    }
 
 #ifdef RUNTIME
 	end = clock();
