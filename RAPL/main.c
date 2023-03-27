@@ -15,7 +15,7 @@
 #include "rapl.h"
 #include "sensors.h"
 
-#define TEMPERATURETHRESHOLD 41.83333206176758
+#define TEMPERATURETHRESHOLD 40.16666793823242
 #define SHORTWATTS 100.0
 #define SHORTTIME 0.0
 #define LONGWHATTS 50.0
@@ -124,10 +124,9 @@ int main (int argc, char **argv)
   for (i = 0 ; i < ntimes ; i++)
     {
       temperature = getTemperature();
-      printf("TEMP: %.1f\n", temperature);
 
       sprintf(str_temp, "%.1f", temperature);
-      printf("TEMP_str: %s\n", str_temp);
+
       for (int currentTrys = 0; currentTrys < maxTrys && temperature>TEMPERATURETHRESHOLD; currentTrys++) //NEW
         {
           printf("Sleeping\n");
@@ -135,7 +134,7 @@ int main (int argc, char **argv)
         }
 
         fprintf(fp,"%s , ",argv[1]);
-        fprintf(fp, "%s , ", str_temp); //CORRIGIR: imprime valor errado da temperatura
+        
         rapl_before(fp,core);
       
 #ifdef RUNTIME
@@ -159,7 +158,8 @@ int main (int argc, char **argv)
 	rapl_after(fp,core);
 
 #ifdef RUNTIME	
-	fprintf(fp," %G \n",time_spent);
+	fprintf(fp," %G ,",time_spent);
+  fprintf(fp, "%s \n", str_temp); // CORRIGIR: imprime valor errado da temperatura
 #endif	
     }
     
