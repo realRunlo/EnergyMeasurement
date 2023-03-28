@@ -27,3 +27,4 @@ Significado das colunas do ficheiro csv:
 * **DRAM** : Estima a energia consumida pela RAM
 * **Time (ms)** : Tempo de execução do algoritmo
 * **Temperature** : Temperatura média em ºC de todos os cores 
+* **Memory** : Memória física atribuída à execução do algoritmo

@@ -15,7 +15,7 @@
 #include "rapl.h"
 #include "sensors.h"
 
-#define TEMPERATURETHRESHOLD 40.16666793823242
+#define TEMPERATURETHRESHOLD 39.16666793823242
 #define SHORTWATTS 100.0
 #define SHORTTIME 0.0
 #define LONGWHATTS 50.0
@@ -115,7 +115,7 @@ int main (int argc, char **argv)
   fp = fopen(res,"w");
   rapl_init(core);
 
-  fprintf(fp,"Program, Package , Core(s) , GPU , DRAM? , Time (ms) , Temperature \n");
+  fprintf(fp,"Program, Package , Core(s) , GPU , DRAM? , Time (ms) , Temperature , Memory \n");
 
   int maxTrys = 5;
   float temperature;
@@ -158,8 +158,27 @@ int main (int argc, char **argv)
 	rapl_after(fp,core);
 
 #ifdef RUNTIME	
-	fprintf(fp," %G ,",time_spent);
-  fprintf(fp, "%s \n", str_temp); // CORRIGIR: imprime valor errado da temperatura
+	fprintf(fp,"%G ,",time_spent);
+  fprintf(fp, " %s ,", str_temp);
+
+  ///////////////////Add memory column in csv///////////////////
+  char cmd[1024];
+  int mem;
+  sprintf(cmd, "{ /usr/bin/time -v %s > /dev/null; } 2>&1 | grep 'Maximum resident' | sed 's/[^0-9]\\+\\([0-9]\\+\\).*/\\1/'", command);
+
+  FILE* fp2 = popen(cmd, "r");
+  if (fp2 == NULL) {
+      fprintf(stderr, "Error running command\n");
+      exit(-1);
+  }
+  char buf[1024];
+  while (fgets(buf, sizeof(buf), fp2) != NULL){}
+  pclose(fp2);
+
+  mem = atoi(buf);
+  
+  fprintf(fp, " %d \n", mem);
+  //////////////////////////////////////////////////////////////
 #endif	
     }
     

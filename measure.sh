@@ -22,14 +22,14 @@ make
 
 cd ..
       
-echo "Size ,Language ,Program ,Package ,Core ,GPU ,DRAM ,Time (ms) ,Temperature" > measurements.csv
+echo "Size , Language , Program , Package , Core , GPU , DRAM , Time (ms) , Temperature , Memory" > measurements.csv
 
 # Loop over size values
 for size in 10 100 1000
 do
     # Update input arrays with new size
     cd Utils/
-    python3 arrayUpdate.py $size ../Python/*.py ../C/*.c
+    python3 arrayUpdate.py $size ../Python/*.py ../C/*.c ../Haskell/*.hs
     cd ..
 
     # Build and measure C programs
@@ -41,6 +41,7 @@ do
     for file in *.J;
         do tail -n +2 -q "$file" | sed "s/^/ $size ,C ,/" | sed "s/C_//" >> ../measurements.csv; 
     done
+
     make clean
     cd ..
 
@@ -53,6 +54,7 @@ do
         do tail -n +2 -q "$file" | sed "s/^/ $size ,Python ,/" | sed "s/.py//" >> ../measurements.csv; 
     done
     make clean
+    cd..
 
     # Build and measure Haskell programs
     cd Haskell/
@@ -71,5 +73,5 @@ cd RAPL/
 make clean
 cd ..
 
-awk -F',' 'BEGIN{OFS=","} {print $2, $3, $1, $4, $5, $6, $7, $8, $9}' measurements.csv > tmp.csv
+awk -F',' 'BEGIN{OFS=","} {print $2, $3, $1, $4, $5, $6, $7, $8, $9, $10}' measurements.csv > tmp.csv
 mv tmp.csv measurements.csv
