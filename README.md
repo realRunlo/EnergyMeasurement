@@ -18,13 +18,13 @@ Para gerar o csv correr a script:
 ```sh measurements.sh```
 
 Significado das colunas do ficheiro csv:
-* **Size** : Tamanho da lista argumento do algoritmo de ordenação
-* **Language** : Linguagem de programação do algoritmo de ordenação
-* **Program** : Nome do algoritmo de ordenação
-* **Package** : Energia consumida por todo o socket (consumo de todos os cores, gráficas e componentes fora dos cores)
-* **Core** : Energia consumida por todos os cores e caches
-* **GPU** : Energia consumida pelo GPU
-* **DRAM** : Estima a energia consumida pela RAM
-* **Time (ms)** : Tempo de execução do algoritmo
-* **Temperature** : Temperatura média em ºC de todos os cores 
-* **Memory** : Memória física atribuída à execução do algoritmo
+* **Size** : Tamanho da lista argumento do algoritmo de ordenação;
+* **Language** : Linguagem de programação do algoritmo de ordenação;
+* **Program** : Nome do algoritmo de ordenação;
+* **Package** : Energia consumida por todo o socket (consumo de todos os cores, gráficas e componentes fora dos cores);
+* **Core** : Energia consumida por todos os cores e caches;
+* **GPU** : Energia consumida pelo GPU;
+* **DRAM** : Estima a energia consumida pela RAM;
+* **Time** : Tempo de execução do algoritmo, em milissegundos;
+* **Temperature** : Temperatura média em ºC de todos os cores;
+* **Memory** : Memória física total atribuída à execução do algoritmo, em kbytes
