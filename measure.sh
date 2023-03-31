@@ -22,7 +22,7 @@ make
 
 cd ..
       
-echo "Size , Language , Program , Package , Core , GPU , DRAM , Time (ms) , Temperature , Memory" > measurements.csv
+echo "Size,Language,Program,Package,Core,GPU,DRAM,Time,Temperature,Memory" > measurements.csv
 
 # Loop over size values
 for size in 10 100 1000

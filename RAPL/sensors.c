@@ -28,7 +28,7 @@ float getTemperature() {
         
     fclose(temp_file);
     remove("temp.txt");
-    printf("\nMean temperature in all cores is %.1f°C\n", mean_temp);
+    printf("\nMean temperature in all cores is %.10f°C\n", mean_temp);
 
     return mean_temp;
 }

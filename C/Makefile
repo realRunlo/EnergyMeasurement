@@ -1,4 +1,3 @@
-
 NTIMES=50
 
 export NTIMES
@@ -8,7 +7,7 @@ compile:
 	gcc -O2 -o C_QuickSort  QuickSort.c
 	gcc -O2 -o C_SelectionSort SelectionSort.c
 run:
-	./BubbleSort
+	./C_BubbleSort
 
 measure: 
 	sudo ../RAPL/main "C_BubbleSort" $(NTIMES)
