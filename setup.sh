@@ -7,7 +7,7 @@ echo "#### Installing CMake"
 sudo apt install cmake
 
 echo "#### Installing lm-sensors"
-sudo apt install lm−sensors
+sudo apt install lm-sensors
 
 echo "#### Installing Powercap"
 git clone https://github.com/powercap/powercap.git
@@ -32,3 +32,9 @@ cd _build
 cmake ..
 make
 make install
+
+cd ..
+cd ..
+
+echo "### Installing Java package
+sudo apt install default-jdk

@@ -15,7 +15,7 @@
 #include "rapl.h"
 #include "sensors.h"
 
-#define TEMPERATURETHRESHOLD 28.0
+#define TEMPERATURETHRESHOLD 50.5
 #define SHORTWATTS 100.0
 #define SHORTTIME 0.0
 #define LONGWHATTS 50.0

@@ -1,5 +1,5 @@
 #!/bin/bash
-NTIMES=50
+NTIMES=1
 
 #Compile sensors wich will be used to calculate cool temperature
 cd RAPL
@@ -11,7 +11,7 @@ cd Utils/
 python3 temperatureUpdate.py
 
 #Update the number of times the program will run on each case
-python3 ntimesUpdate.py $NTIMES ../Python/Makefile ../C/Makefile ../Haskell/Makefile
+python3 ntimesUpdate.py $NTIMES ../Python/Makefile ../C/Makefile ../Haskell/Makefile ../Java/Makefile
 
 cd ..
 
@@ -66,6 +66,19 @@ do
     done
     make clean
     cd ..
+
+    # Build and measure Java programs
+    cd Java/
+    make measure 
+
+    # Append Haskell measurement results to CSV file with size column
+    for file in *.J;
+        do tail -n +2 -q "$file" | sed "s/^/ $size ,Java ,/" >> ../measurements.csv; 
+    done
+    make clean
+    cd ..
+
+
 
 done
 

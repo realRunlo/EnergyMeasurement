@@ -41,6 +41,8 @@ for input_file in sys.argv[2:]:
         data = re.sub(r'array =.*', f'array = [{new_array_str}]', data)
     elif get_file_extension(input_file)=="hs":
         data = re.sub(r'let unsortedList =.*', f'let unsortedList = [{new_array_str}]', data)
+    elif get_file_extension(input_file)=="java":
+        data = re.sub(r'int[] arr =.*', f'int[] arr = {{ {new_array_str} }}', data)
     # Write the updated file
     with open(input_file, 'w') as f:
         f.write(data)
