@@ -11,7 +11,7 @@ cd Utils/
 python3 temperatureUpdate.py
 
 #Update the number of times the program will run on each case
-python3 ntimesUpdate.py $NTIMES ../Python/Makefile ../C/Makefile ../Haskell/Makefile ../Java/Makefile ../C++/Makefile
+python3 ntimesUpdate.py $NTIMES ../Python/Makefile ../C/Makefile ../Haskell/Makefile ../Java/Makefile ../C++/Makefile ../Prolog/Makefile
 
 cd ..
 
@@ -29,7 +29,7 @@ for size in 10 100 1000
 do
     # Update input arrays with new size
     cd Utils/
-    python3 arrayUpdate.py $size ../Python/*.py ../C/*.c ../Haskell/*.hs ../Java/*.java ../C++/*.cpp
+    python3 arrayUpdate.py $size ../Python/*.py ../C/*.c ../Haskell/*.hs ../Java/*.java ../C++/*.cpp ../Prolog/*.pl
     cd ..
 
     # Build and measure C programs
@@ -82,13 +82,23 @@ do
     cd C++/
     make measure 
 
-    # Append Haskell measurement results to CSV file with size column
+    # Append C++ measurement results to CSV file with size column
     for file in *.J;
         do tail -n +2 -q "$file" | sed "s/^/ $size ,C++ ,/" >> ../measurements.csv; 
     done
     make clean
     cd ..
 
+    # Build and measure Prolog programs
+    cd Prolog/
+    make measure 
+
+    # Append Prolog measurement results to CSV file with size column
+    for file in *.J;
+        do tail -n +2 -q "$file" | sed "s/^/ $size ,Prolog ,/" >> ../measurements.csv; 
+    done
+    make clean
+    cd ..
 
 
 done

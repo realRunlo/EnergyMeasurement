@@ -36,5 +36,9 @@ make install
 cd ..
 cd ..
 
-echo "### Installing Java package
+echo "### Installing Java package"
 sudo apt install default-jdk
+
+echo "### Installing Prolog package"
+sudo apt-add-repository ppa:swi-prolog/stable
+sudo apt install swi-prolog
