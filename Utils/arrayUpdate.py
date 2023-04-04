@@ -35,7 +35,7 @@ for input_file in sys.argv[2:]:
 
     new_array_str = ','.join(str(x) for x in new_array)
 
-    if get_file_extension(input_file)=="c":
+    if get_file_extension(input_file)=="c" or get_file_extension(input_file)=="cpp":
         data = re.sub(r'#define elems .*', f'#define elems {new_array_str}', data)
     elif get_file_extension(input_file)=="py":
         data = re.sub(r'array =.*', f'array = [{new_array_str}]', data)
