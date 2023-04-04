@@ -11,7 +11,7 @@ cd Utils/
 python3 temperatureUpdate.py
 
 #Update the number of times the program will run on each case
-python3 ntimesUpdate.py $NTIMES ../Python/Makefile ../C/Makefile ../Haskell/Makefile ../Java/Makefile ../C++/Makefile ../Prolog/Makefile
+python3 ntimesUpdate.py $NTIMES ../Languages/Python/Makefile ../Languages/C/Makefile ../Languages/Haskell/Makefile ../Languages/Java/Makefile ../Languages/C++/Makefile ../Languages/Prolog/Makefile
 
 cd ..
 
@@ -29,76 +29,76 @@ for size in 10 100 1000
 do
     # Update input arrays with new size
     cd Utils/
-    python3 arrayUpdate.py $size ../Python/*.py ../C/*.c ../Haskell/*.hs ../Java/*.java ../C++/*.cpp ../Prolog/*.pl
+    python3 arrayUpdate.py $size ../Languages/Python/*.py ../Languages/C/*.c ../Languages/Haskell/*.hs ../Languages/Java/*.java ../Languages/C++/*.cpp ../Languages/Prolog/*.pl
     cd ..
 
     # Build and measure C programs
-    cd C/
+    cd Languages/C/
     make
     make measure 
 
     # Append C measurement results to CSV file with size column
     for file in *.J;
-        do tail -n +2 -q "$file" | sed "s/^/ $size ,C ,/" | sed "s/C_//" >> ../measurements.csv; 
+        do tail -n +2 -q "$file" | sed "s/^/ $size ,C ,/" | sed "s/C_//" >> ../../measurements.csv; 
     done
 
     make clean
-    cd ..
+    cd ../..
 
     # Build and measure Python programs
-    cd Python/
+    cd Languages/Python/
     make measure 
 
     # Append Python measurement results to CSV file with size column
     for file in *.J;
-        do tail -n +2 -q "$file" | sed "s/^/ $size ,Python ,/" | sed "s/.py//" >> ../measurements.csv; 
+        do tail -n +2 -q "$file" | sed "s/^/ $size ,Python ,/" | sed "s/.py//" >> ../../measurements.csv; 
     done
     make clean
-    cd..
+    cd ../..
 
     # Build and measure Haskell programs
-    cd Haskell/
+    cd Languages/Haskell/
     make measure 
 
     # Append Haskell measurement results to CSV file with size column
     for file in *.J;
-        do tail -n +2 -q "$file" | sed "s/^/ $size ,Haskell ,/" >> ../measurements.csv; 
+        do tail -n +2 -q "$file" | sed "s/^/ $size ,Haskell ,/" >> ../../measurements.csv; 
     done
     make clean
-    cd ..
+    cd ../..
 
     # Build and measure Java programs
-    cd Java/
+    cd Languages/Java/
     make measure 
 
     # Append Haskell measurement results to CSV file with size column
     for file in *.J;
-        do tail -n +2 -q "$file" | sed "s/^/ $size ,Java ,/" >> ../measurements.csv; 
+        do tail -n +2 -q "$file" | sed "s/^/ $size ,Java ,/" >> ../../measurements.csv; 
     done
     make clean
-    cd ..
+    cd ../..
 
     # Build and measure C++ programs
-    cd C++/
+    cd Languages/C++/
     make measure 
 
     # Append C++ measurement results to CSV file with size column
     for file in *.J;
-        do tail -n +2 -q "$file" | sed "s/^/ $size ,C++ ,/" >> ../measurements.csv; 
+        do tail -n +2 -q "$file" | sed "s/^/ $size ,C++ ,/" >> ../../measurements.csv; 
     done
     make clean
-    cd ..
+    cd ../..
 
     # Build and measure Prolog programs
-    cd Prolog/
+    cd Languages/Prolog/
     make measure 
 
     # Append Prolog measurement results to CSV file with size column
     for file in *.J;
-        do tail -n +2 -q "$file" | sed "s/^/ $size ,Prolog ,/" >> ../measurements.csv; 
+        do tail -n +2 -q "$file" | sed "s/^/ $size ,Prolog ,/" >> ../../measurements.csv; 
     done
     make clean
-    cd ..
+    cd ../..
 
 
 done
