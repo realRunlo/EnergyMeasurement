@@ -29,7 +29,7 @@ for size in 10 100 1000
 do
     # Update input arrays with new size
     cd Utils/
-    python3 arrayUpdate.py $size ../Python/*.py ../C/*.c ../Haskell/*.hs
+    python3 arrayUpdate.py $size ../Python/*.py ../C/*.c ../Haskell/*.hs ../Java/*.java ../C++/*.cpp
     cd ..
 
     # Build and measure C programs
