@@ -45,6 +45,8 @@ for input_file in sys.argv[2:]:
         data = re.sub(r'private static final int\[\] VALUES =.*', f'private static final int[] VALUES = {{ {new_array_str} }};', data)
     elif get_file_extension(input_file)=="pl":
         data = re.sub(r'List =.*', f'List = [{new_array_str}],', data)
+    elif get_file_extension(input_file)=="rb":
+        data = re.sub(r'arr =.*', f'arr = [{new_array_str}]', data)
     # Write the updated file
     with open(input_file, 'w') as f:
         f.write(data)

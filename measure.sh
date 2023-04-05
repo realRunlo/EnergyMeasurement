@@ -11,7 +11,7 @@ cd Utils/
 python3 temperatureUpdate.py
 
 #Update the number of times the program will run on each case
-python3 ntimesUpdate.py $NTIMES ../Languages/Python/Makefile ../Languages/C/Makefile ../Languages/Haskell/Makefile ../Languages/Java/Makefile ../Languages/C++/Makefile ../Languages/Prolog/Makefile
+python3 ntimesUpdate.py $NTIMES ../Languages/Python/Makefile ../Languages/C/Makefile ../Languages/Haskell/Makefile ../Languages/Java/Makefile ../Languages/C++/Makefile ../Languages/Prolog/Makefile ../Languages/Ruby/Makefile 
 
 cd ..
 
@@ -25,11 +25,11 @@ cd ..
 echo "Size,Language,Program,Package,Core,GPU,DRAM,Time,Temperature,Memory" > measurements.csv
 
 # Loop over size values
-for size in 10 100 1000
+for size in 10 #100 1000
 do
     # Update input arrays with new size
     cd Utils/
-    python3 arrayUpdate.py $size ../Languages/Python/*.py ../Languages/C/*.c ../Languages/Haskell/*.hs ../Languages/Java/*.java ../Languages/C++/*.cpp ../Languages/Prolog/*.pl
+    python3 arrayUpdate.py $size ../Languages/Python/*.py ../Languages/C/*.c ../Languages/Haskell/*.hs ../Languages/Java/*.java ../Languages/C++/*.cpp ../Languages/Prolog/*.pl ../Languages/Ruby/*.rb
     cd ..
 
     # Build and measure C programs
@@ -96,6 +96,17 @@ do
     # Append Prolog measurement results to CSV file with size column
     for file in *.J;
         do tail -n +2 -q "$file" | sed "s/^/ $size ,Prolog ,/" >> ../../measurements.csv; 
+    done
+    make clean
+    cd ../..
+
+    # Build and measure Ruby programs
+    cd Languages/Ruby/
+    make measure 
+
+    # Append Ruby measurement results to CSV file with size column
+    for file in *.J;
+        do tail -n +2 -q "$file" | sed "s/^/ $size ,Ruby ,/" | sed "s/.rb//" >> ../../measurements.csv; 
     done
     make clean
     cd ../..

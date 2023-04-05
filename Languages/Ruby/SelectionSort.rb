@@ -1,31 +1,39 @@
+#!/usr/bin/env ruby
+
 # Source: ChatGPT
 
-def selection_sort(arr)
+$LOGGING = false
+
+def selectionsort(arr)
   n = arr.length
 
-  # Traverse through all array elements
-  (0..n-1).each do |i|
-    # Find the minimum element in remaining unsorted array
-    min_index = i
-    (i+1..n-1).each do |j|
-      if arr[j] < arr[min_index]
-        min_index = j
+  # Iterate through each element in the array
+  for i in 0...n
+    # Find the minimum element in the unsorted part of the array
+    min_idx = i
+    for j in i+1...n
+      if arr[j] < arr[min_idx]
+        min_idx = j
       end
     end
 
-    # Swap the found minimum element with the first element
-    temp = arr[min_index]
-    arr[min_index] = arr[i]
-    arr[i] = temp
+    # Swap the minimum element with the first element in the unsorted part of the array
+    arr[i], arr[min_idx] = arr[min_idx], arr[i]
   end
-  arr
+
+  # Return the sorted array
+  return arr
 end
 
+
 def main()
-  arr = [64, 34, 25, 12, 22, 11, 90]
-  puts "Array before sorting: #{arr}"
-  sorted_arr = selection_sort(arr)
-  puts "Array after sorting: #{sorted_arr}"
+  arr = [14454,86495,76818,12234,59725,15244,80646,4864,34847,41294]
+  ans = selectionsort(arr)
+  if $LOGGING
+    puts "Sorted array: #{ans}"
+  else
+    puts ""
+  end
 end
 
 main()

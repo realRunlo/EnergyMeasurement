@@ -1,46 +1,39 @@
+#!/usr/bin/env ruby
+
 # Source: ChatGPT
 
-def quick_sort(arr, low, high)
-  if low < high
-    # partition_index is the index of partition element
-    partition_index = partition(arr, low, high)
+$LOGGING = false
 
-    # Recursively sort elements before and after partition element
-    quick_sort(arr, low, partition_index - 1)
-    quick_sort(arr, partition_index + 1, high)
-  end
-  arr
-end
+def quicksort(arr)
+  # Base case: an array of length 0 or 1 is already sorted
+  return arr if arr.length <= 1
 
-def partition(arr, low, high)
-  # Choose the rightmost element as pivot
-  pivot = arr[high]
+  # Choose a pivot element
+  pivot = arr[0]
 
-  # Index of smaller element
-  i = low - 1
-
-  (low..high-1).each do |j|
-    # If current element is smaller than or equal to pivot
-    if arr[j] <= pivot
-      i += 1
-      # Swap arr[i] and arr[j]
-      arr[i], arr[j] = arr[j], arr[i]
+  # Divide the array into two sub-arrays of elements less than and greater than the pivot
+  less = []
+  greater = []
+  arr[1..-1].each do |x|
+    if x < pivot
+      less << x
+    else
+      greater << x
     end
   end
 
-  # Swap arr[i+1] and arr[high] (or pivot)
-  arr[i+1], arr[high] = arr[high], arr[i+1]
-
-  # Return partition index
-  i + 1
+  # Recursively sort the two sub-arrays and concatenate them with the pivot in between
+  return quicksort(less) + [pivot] + quicksort(greater)
 end
 
 def main()
-  arr = [64, 34, 25, 12, 22, 11, 90]
-  n = arr.length
-  puts "Array before sorting: #{arr}"
-  sorted_arr = quick_sort(arr, 0, n - 1)
-  puts "Array after sorting: #{sorted_arr}"
+  arr = [14454,86495,76818,12234,59725,15244,80646,4864,34847,41294]
+  ans = quicksort(arr)
+  if $LOGGING
+    puts "Sorted array: #{ans}"
+  else
+    puts ""
+  end
 end
 
 main()

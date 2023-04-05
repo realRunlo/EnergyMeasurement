@@ -42,3 +42,6 @@ sudo apt install default-jdk
 echo "### Installing Prolog package"
 sudo apt-add-repository ppa:swi-prolog/stable
 sudo apt install swi-prolog
+
+echo "### Installing Ruby package"
+sudo apt install ruby-full

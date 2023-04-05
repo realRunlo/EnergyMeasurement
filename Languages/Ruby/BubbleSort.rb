@@ -1,4 +1,8 @@
+#!/usr/bin/env ruby
+
 # Source: ChatGPT
+
+$LOGGING = false
 
 def bubble_sort(arr)
   n = arr.length
@@ -19,11 +23,15 @@ def bubble_sort(arr)
   arr
 end
 
+
 def main()
-  arr = [64, 34, 25, 12, 22, 11, 90]
-  puts "Array before sorting: #{arr}"
-  sorted_arr = bubble_sort(arr)
-  puts "Array after sorting: #{sorted_arr}"
+  arr = [14454,86495,76818,12234,59725,15244,80646,4864,34847,41294]
+  bubble_sort(arr)
+  if $LOGGING
+    puts "Sorted array: #{arr}"
+  else
+    puts ""
+  end
 end
 
 main()
