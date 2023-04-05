@@ -57,6 +57,8 @@ for input_file in sys.argv[2:]:
         data = re.sub(r'int\[\] arr =.*', f'int[] arr = {{{new_array_str}}};', data)
     elif get_file_extension(input_file)=="rs":
         data = re.sub(r'let mut arr =.*', f'let mut arr = vec![{new_array_str}];', data)
+    elif get_file_extension(input_file)=="go":
+        data = re.sub(r'arr :=.*', f'arr := []int{{{new_array_str}}};', data)
     # Write the updated file
     with open(input_file, 'w') as f:
         f.write(data)

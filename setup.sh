@@ -60,3 +60,6 @@ sudo apt-get install mono-mcs
 
 echo "### Installing Rust package"
 sudo apt install rustc
+
+echo "### Installing Go package"
+sudo apt-get -y install golang-go 

@@ -1,3 +1,5 @@
+// Source: ChatGPT
+
 static mut LOGGING: bool = false;
 
 fn main() {

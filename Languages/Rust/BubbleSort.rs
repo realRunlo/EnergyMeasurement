@@ -1,7 +1,9 @@
+// Source: ChatGPT
+
 static mut LOGGING: bool = false;
 
 fn main() {
-    let mut arr = vec![62326,7533,9766,30570,17106,60621,20260,31761,61667,15929];
+    let mut arr = vec![59761,90739,82579,1135,58002,80436,60384,52321,60761,75965];
     bubble_sort(&mut arr);
     if unsafe { LOGGING } {
         println!("Sorted array: {:?}", arr); //Logging=True
