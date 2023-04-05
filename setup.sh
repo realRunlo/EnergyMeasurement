@@ -51,3 +51,6 @@ sudo apt install php
 
 echo "### Installing Kotlin package"
 sudo apt install kotlin
+
+echo "### Installing JavaScript package"
+sudo apt install nodejs

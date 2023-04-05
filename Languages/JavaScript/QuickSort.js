@@ -1,3 +1,8 @@
+#!/usr/bin/env node
+
+var LOGGING = false;
+
+
 function quickSort(arr, left = 0, right = arr.length - 1) {
     if (left >= right) return;
 
@@ -26,11 +31,13 @@ function partition(arr, left, right, pivot) {
 }
 
 function main() {
-    const arr = [4, 2, 1, 3, 5];
-    console.log(`Original array: ${arr}`);
-
-    const sortedArr = quickSort(arr);
-    console.log(`Sorted array: ${sortedArr}`);
+    let arr = [40646,53538,59021,59727,46156,17161,20970,27293,8001,66539]
+    quickSort(arr);
+    if (LOGGING) {
+        console.log("Sorted Array: " + arr);
+    } else {
+        console.log();
+    }
 }
 
 main();

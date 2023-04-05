@@ -1,3 +1,7 @@
+#!/usr/bin/env node
+
+var LOGGING = false;
+
 function bubbleSort(arr) {
     let len = arr.length;
     for (let i = 0; i < len; i++) {
@@ -13,10 +17,13 @@ function bubbleSort(arr) {
 }
 
 function main() {
-    let arr = [5, 2, 6, 8, 3, 1];
-    console.log("Before sorting: " + arr);
+    let arr = [40646,53538,59021,59727,46156,17161,20970,27293,8001,66539]
     bubbleSort(arr);
-    console.log("After sorting: " + arr);
+    if (LOGGING) {
+        console.log("Sorted Array: " + arr);
+    } else {
+        console.log();
+    }
 }
 
 main();
