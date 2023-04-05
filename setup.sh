@@ -63,3 +63,8 @@ sudo apt install rustc
 
 echo "### Installing Go package"
 sudo apt-get -y install golang-go 
+
+echo "### Installing Scala package"
+sudo apt-get update
+sudo apt-get install default-jdk
+sudo apt-get install scala
