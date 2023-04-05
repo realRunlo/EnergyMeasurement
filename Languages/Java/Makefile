@@ -3,25 +3,23 @@ NTIMES=1
 export NTIMES
 
 measure:
+	javac -d . *.java
+	echo "#!/bin/bash" > BubbleSort.sh
+	echo "java Languages.Java.BubbleSort" >> BubbleSort.sh
+	chmod +x BubbleSort.sh
 
-	cp BubbleSort.java BubbleSort
-	sed -i '1s|^|#!/usr/bin/java --source 11\n|' BubbleSort
+	echo "#!/bin/bash" > QuickSort.sh
+	echo "java Languages.Java.QuickSort" >> QuickSort.sh
+	chmod +x QuickSort.sh
 
-	cp QuickSort.java QuickSort
-	sed -i '1s|^|#!/usr/bin/java --source 11\n|' QuickSort
+	echo "#!/bin/bash" > SelectionSort.sh
+	echo "java Languages.Java.SelectionSort" >> SelectionSort.sh
+	chmod +x SelectionSort.sh
 
-	cp SelectionSort.java SelectionSort
-	sed -i '1s|^|#!/usr/bin/java --source 11\n|' SelectionSort
+	sudo ../../RAPL/main "BubbleSort.sh" $(NTIMES)
+	sudo ../../RAPL/main "QuickSort.sh" $(NTIMES)
+	sudo ../../RAPL/main "SelectionSort.sh" $(NTIMES)
 
-	chmod +x ./BubbleSort
-	chmod +x ./QuickSort
-	chmod +x ./SelectionSort
-
-	sudo ../../RAPL/main "BubbleSort" $(NTIMES)
-	sudo ../../RAPL/main "QuickSort" $(NTIMES)
-	sudo ../../RAPL/main "SelectionSort" $(NTIMES)
-
-	rm BubbleSort QuickSort SelectionSort
 
 mem_bubble: 
 	@{ /usr/bin/time -v ./BubbleSort > /dev/null; } 2>&1 | grep "Maximum resident" | sed "s/[^0-9]\+\([0-9]\+\).*/\1/"
@@ -33,4 +31,5 @@ mem_selection:
 	@{ /usr/bin/time -v ./SelectionSort > /dev/null; } 2>&1 | grep "Maximum resident" | sed "s/[^0-9]\+\([0-9]\+\).*/\1/"
 	
 clean:
-	sudo rm *.J
+	sudo rm *.J *.sh
+	sudo rm -rf Languages/
