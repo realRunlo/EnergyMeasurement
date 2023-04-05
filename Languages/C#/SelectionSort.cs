@@ -4,13 +4,18 @@ using System;
 
 class SelectionSort
 {
+    public static bool LOGGING = false;
+
     static void Main(string[] args)
     {
-        int[] arr = { 64, 34, 25, 12, 22, 11, 90 };
+        int[] arr = {44411,84470,23178,48948,15058,16444,37478,32140,605,67448};
         int n = arr.Length;
         SelectionSortMethod(arr, n);
-        Console.WriteLine("Sorted array:");
-        PrintArray(arr);
+        if (LOGGING)
+        {
+            Console.WriteLine("Sorted array:");
+            PrintArray(arr);
+        }
     }
 
     static void SelectionSortMethod(int[] arr, int n)

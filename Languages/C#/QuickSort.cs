@@ -4,13 +4,18 @@ using System;
 
 class QuickSort
 {
+    public static bool LOGGING = false;
+
     static void Main(string[] args)
     {
-        int[] arr = { 10, 7, 8, 9, 1, 5 };
+        int[] arr = {44411,84470,23178,48948,15058,16444,37478,32140,605,67448};
         int n = arr.Length;
         quickSort(arr, 0, n - 1);
-        Console.WriteLine("Sorted array:");
-        printArray(arr);
+        if (LOGGING)
+        {
+            Console.WriteLine("Sorted array:");
+            printArray(arr);
+        }
     }
 
     static void quickSort(int[] arr, int low, int high)

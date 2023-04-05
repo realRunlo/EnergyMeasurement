@@ -54,3 +54,6 @@ sudo apt install kotlin
 
 echo "### Installing JavaScript package"
 sudo apt install nodejs
+
+echo "### Installing C# package"
+sudo apt-get install mono-mcs
