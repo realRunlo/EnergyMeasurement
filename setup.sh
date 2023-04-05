@@ -57,3 +57,6 @@ sudo apt install nodejs
 
 echo "### Installing C# package"
 sudo apt-get install mono-mcs
+
+echo "### Installing Rust package"
+sudo apt install rustc
