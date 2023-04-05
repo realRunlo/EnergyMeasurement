@@ -49,6 +49,8 @@ for input_file in sys.argv[2:]:
         data = re.sub(r'arr =.*', f'arr = [{new_array_str}]', data)
     elif get_file_extension(input_file)=="php":
         data = re.sub(r'\$arr =.*', f'$arr = array({new_array_str});', data)
+    elif get_file_extension(input_file)=="kt":
+        data = re.sub(r'val arr =.*', f'val arr = intArrayOf({new_array_str})', data)
     # Write the updated file
     with open(input_file, 'w') as f:
         f.write(data)

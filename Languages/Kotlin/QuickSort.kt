@@ -1,5 +1,7 @@
 // Source: ChatGPT
 
+var LOGGING: Boolean = false
+
 fun quickSort(arr: IntArray, low: Int, high: Int) {
     if (low < high) {
         val pivotIndex = partition(arr, low, high)
@@ -27,18 +29,12 @@ fun swap(arr: IntArray, i: Int, j: Int) {
     arr[j] = temp
 }
 
-fun printArray(arr: IntArray) {
-    for (element in arr) {
-        print("$element ")
-    }
-    println()
-}
-
 fun main() {
-    val arr = intArrayOf(64, 34, 25, 12, 22, 11, 90)
-    println("Original array:")
-    printArray(arr)
+    val arr = intArrayOf(99587,86421,51533,37776,36,54342,82718,28306,40097,50753)
     quickSort(arr, 0, arr.size - 1)
-    println("Sorted array:")
-    printArray(arr)
+    if (LOGGING) {
+        println("Sorted array: ${arr.contentToString()}")
+    } else {
+        println()
+    }
 }

@@ -48,3 +48,6 @@ sudo apt install ruby-full
 
 echo "### Installing PHP package"
 sudo apt install php
+
+echo "### Installing Kotlin package"
+sudo apt install kotlin

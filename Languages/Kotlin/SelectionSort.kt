@@ -1,5 +1,7 @@
 // Source: ChatGPT
 
+var LOGGING: Boolean = false
+
 fun selectionSort(arr: IntArray) {
     val n = arr.size
     for (i in 0 until n - 1) {
@@ -16,7 +18,11 @@ fun selectionSort(arr: IntArray) {
 }
 
 fun main() {
-    val arr = intArrayOf(64, 25, 12, 22, 11)
+    val arr = intArrayOf(99587,86421,51533,37776,36,54342,82718,28306,40097,50753)
     selectionSort(arr)
-    println("Sorted array: ${arr.contentToString()}")
+    if (LOGGING) {
+        println("Sorted array: ${arr.contentToString()}")
+    } else {
+        println()
+    }
 }

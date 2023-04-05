@@ -11,7 +11,7 @@ cd Utils/
 python3 temperatureUpdate.py
 
 #Update the number of times the program will run on each case
-python3 ntimesUpdate.py $NTIMES ../Languages/Python/Makefile ../Languages/C/Makefile ../Languages/Haskell/Makefile ../Languages/Java/Makefile ../Languages/C++/Makefile ../Languages/Prolog/Makefile ../Languages/Ruby/Makefile ../Languages/PHP/Makefile
+python3 ntimesUpdate.py $NTIMES ../Languages/Python/Makefile ../Languages/C/Makefile ../Languages/Haskell/Makefile ../Languages/Java/Makefile ../Languages/C++/Makefile ../Languages/Prolog/Makefile ../Languages/Ruby/Makefile ../Languages/PHP/Makefile ../Languages/Kotlin/Makefile
 
 cd ..
 
@@ -29,7 +29,7 @@ for size in 10 #100 1000
 do
     # Update input arrays with new size
     cd Utils/
-    python3 arrayUpdate.py $size ../Languages/Python/*.py ../Languages/C/*.c ../Languages/Haskell/*.hs ../Languages/Java/*.java ../Languages/C++/*.cpp ../Languages/Prolog/*.pl ../Languages/Ruby/*.rb ../Languages/PHP/*.php
+    python3 arrayUpdate.py $size ../Languages/Python/*.py ../Languages/C/*.c ../Languages/Haskell/*.hs ../Languages/Java/*.java ../Languages/C++/*.cpp ../Languages/Prolog/*.pl ../Languages/Ruby/*.rb ../Languages/PHP/*.php ../Languages/Kotlin/*.kt
     cd ..
 
     # Build and measure C programs
@@ -118,6 +118,17 @@ do
     # Append PHP measurement results to CSV file with size column
     for file in *.J;
         do tail -n +2 -q "$file" | sed "s/^/ $size ,PHP ,/" | sed "s/.php//" >> ../../measurements.csv; 
+    done
+    make clean
+    cd ../..
+
+    # Build and measure Kotlin programs
+    cd Languages/Kotlin/
+    make measure 
+
+    # Append PHP measurement results to CSV file with size column
+    for file in *.J;
+        do tail -n +2 -q "$file" | sed "s/^/ $size ,Kotlin ,/" | sed "s/.sh//" >> ../../measurements.csv; 
     done
     make clean
     cd ../..
