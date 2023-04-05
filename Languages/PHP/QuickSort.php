@@ -1,6 +1,9 @@
+#!/usr/bin/env php
 <?php
 
 // Source: ChatGPT
+
+$LOGGING = false;
 
 // Quicksort implementation in PHP
 function quicksort($arr, $low, $high) {
@@ -33,13 +36,18 @@ function partition(&$arr, $low, $high) {
 
 function main()
 {
-    // Example usage
-    $arr = array(64, 34, 25, 12, 22, 11, 90);
-    $sortedArr = quicksort($arr, 0, count($arr)-1);
-    echo "Sorted array: \n";
-    for ($i = 0; $i < count($sortedArr); $i++) {
-        echo $sortedArr[$i] . " ";
+    $arr = array(76643,68078,59334,66985,9086,13553,84696,85651,25947,55645);
+    $ans = quicksort($arr, 0, count($arr)-1);
+    global $LOGGING;
+    if ($LOGGING) {
+        echo "Sorted array: \n";
+        for ($i = 0; $i < count($ans); $i++) {
+            echo $ans[$i] . " ";
+        }
+    } else {
+        echo "\n";
     }
 }
 
 main();
+?>

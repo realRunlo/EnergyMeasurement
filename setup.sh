@@ -45,3 +45,6 @@ sudo apt install swi-prolog
 
 echo "### Installing Ruby package"
 sudo apt install ruby-full
+
+echo "### Installing PHP package"
+sudo apt install php

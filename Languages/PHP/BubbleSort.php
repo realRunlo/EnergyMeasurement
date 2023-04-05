@@ -1,6 +1,10 @@
+#!/usr/bin/env php
+
 <?php
 
 // Source: ChatGPT
+
+$LOGGING = false;
 
 // Bubble Sort implementation in PHP
 function bubbleSort($arr) {
@@ -21,13 +25,18 @@ function bubbleSort($arr) {
 // Main function for Bubble Sort
 function main()
 {
-    // Example usage
-    $arr = array(64, 34, 25, 12, 22, 11, 90);
-    $sortedArr = bubbleSort($arr);
-    echo "Sorted array: \n";
-    for ($i = 0; $i < count($sortedArr); $i++) {
-        echo $sortedArr[$i] . " ";
+    $arr = array(76643,68078,59334,66985,9086,13553,84696,85651,25947,55645);
+    $ans = bubbleSort($arr);
+    global $LOGGING;
+    if ($LOGGING) {
+        echo "Sorted array: \n";
+        for ($i = 0; $i < count($ans); $i++) {
+            echo $ans[$i] . " ";
+        }
+    } else {
+        echo "\n";
     }
 }
 
 main();
+?>

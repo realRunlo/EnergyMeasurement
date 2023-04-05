@@ -1,6 +1,10 @@
+#!/usr/bin/env php
+
 <?php
 
 // Source: ChatGPT
+
+$LOGGING = false;
 
 // Selection Sort implementation in PHP
 function selectionsort(&$arr, $n) {
@@ -17,13 +21,20 @@ function selectionsort(&$arr, $n) {
 
 function main()
 {
-    $arr = array(64, 25, 12, 22, 11);
+    $arr = array(76643,68078,59334,66985,9086,13553,84696,85651,25947,55645);
     $n = count($arr);
     selectionsort($arr, $n);
-    echo "Sorted array: \n";
-    for ($i = 0; $i < $n; $i++)
-        echo $arr[$i]." ";
-    echo "\n";
+
+    global $LOGGING;
+    if ($LOGGING) {
+        echo "Sorted array: \n";
+        for ($i = 0; $i < count($arr); $i++) {
+            echo $arr[$i] . " ";
+        }
+    } else {
+        echo "\n";
+    }
 }
 
 main();
+?>
