@@ -1,5 +1,5 @@
 #!/bin/bash
-NTIMES=1
+NTIMES=50
 
 #Compile sensors wich will be used to calculate cool temperature
 cd RAPL
@@ -25,7 +25,7 @@ cd ..
 echo "Size,Language,Program,Package,Core,GPU,DRAM,Time,Temperature,Memory" > measurements.csv
 
 # Loop over size values
-for size in 10 #100 1000
+for size in 10 100 1000
 do
     # Update input arrays with new size
     cd Utils/

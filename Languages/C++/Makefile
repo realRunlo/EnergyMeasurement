@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-std=c++11
 
-NTIMES=1
+NTIMES=50
 
 export NTIMES
 
