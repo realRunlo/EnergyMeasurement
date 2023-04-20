@@ -15,13 +15,18 @@
 #include "rapl.h"
 #include "sensors.h"
 
-#define TEMPERATURETHRESHOLD 32.33333206176758
-#define SHORTWATTS 100.0
-#define SHORTTIME 0.0
-#define LONGWHATTS 50.0
-#define LONGTIME 0.0
+#define TEMPERATURETHRESHOLD 32.66666793823242
+#define SHORTWATTS 10.0
+#define SHORTTIME 0.001
+#define LONGWHATTS 5.0
+#define LONGTIME 10.0
 #define RUNTIME
 
+long fib(int n){
+  if(n<1)
+    return 1;
+  else return fib(n-1) + fib(n-2);
+}
 
 int main (int argc, char **argv) 
 { char command[500],res[500];
@@ -44,16 +49,17 @@ int main (int argc, char **argv)
   raplcap_limit rl_short, rl_long;
   uint32_t q, j, n, d;
   
-  // get the number of RAPL packages
-  n = raplcap_get_num_packages(NULL);
-  if (n == 0) {
-    perror("raplcap_get_num_packages");
-    return -1;
-  }
 
   // initialize
   if (raplcap_init(&rc)) {
     perror("raplcap_init");
+    return -1;
+  }
+  
+  // get the number of RAPL packages
+  n = raplcap_get_num_packages(NULL);
+  if (n == 0) {
+    perror("raplcap_get_num_packages");
     return -1;
   }
 
@@ -124,12 +130,12 @@ int main (int argc, char **argv)
   for (i = 0 ; i < ntimes ; i++)
     {
       temperature = getTemperature();
-
+      /*
       for (int currentTrys = 0; currentTrys < maxTrys && temperature>TEMPERATURETHRESHOLD; currentTrys++,temperature = getTemperature()) //NEW
         {
           printf("Sleeping\n");
           sleep(1);
-        }
+        }*/
         sprintf(str_temp, "%.1f", temperature);
 
         fprintf(fp,"%s , ",argv[1]);
@@ -140,18 +146,20 @@ int main (int argc, char **argv)
         begin = clock();
 	gettimeofday(&tvb, 0);
 #endif
-	
+    /*
     int status = system(command);
     if (status != 0) {
         printf("Error executing command: %s\n", command);
         return -1;
-    }
+    }*/
+  printf("%ld",fib(44));
 
 #ifdef RUNTIME
+
 	end = clock();
 	gettimeofday(&tva, 0);
 	//	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-	time_spent = (tva.tv_sec-tvb.tv_sec)*1000000 + tva.tv_usec-tvb.tv_usec;
+	time_spent = ((tva.tv_sec-tvb.tv_sec)*1000000 + tva.tv_usec-tvb.tv_usec)/1000;
 #endif
 
 	rapl_after(fp,core);
@@ -185,6 +193,7 @@ int main (int argc, char **argv)
 
   fclose(fp);
   fflush(stdout);
+
 
   // cleanup
   if (raplcap_destroy(&rc)) {
