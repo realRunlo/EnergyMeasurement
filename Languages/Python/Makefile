@@ -1,4 +1,4 @@
-NTIMES=50
+NTIMES=1
 
 export NTIMES
 
@@ -20,4 +20,4 @@ mem_selection:
 	@{ /usr/bin/time -v ./SelectionSort.py > /dev/null; } 2>&1 | grep "Maximum resident" | sed "s/[^0-9]\+\([0-9]\+\).*/\1/"
 	
 clean:
-	sudo rm *.J
+	sudo rm *.J *.txt

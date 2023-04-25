@@ -1,4 +1,4 @@
-NTIMES=50
+NTIMES=1
 
 export NTIMES
 
@@ -15,4 +15,5 @@ measure:
 	sudo ../../RAPL/main "SelectionSort.exe" $(NTIMES)
 
 clean:
-	sudo rm -f *.J *.exe
+	sudo rm -f *.J *.exe *.txt
+	

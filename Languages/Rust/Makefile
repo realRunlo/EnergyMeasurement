@@ -1,4 +1,4 @@
-NTIMES=50
+NTIMES=1
 
 export NTIMES
 
@@ -18,4 +18,4 @@ measure:
 	sudo ../../RAPL/main "SelectionSort" $(NTIMES)
 
 clean:
-	sudo rm -r *.J BubbleSort QuickSort SelectionSort
+	sudo rm -r *.J BubbleSort QuickSort SelectionSort *.txt

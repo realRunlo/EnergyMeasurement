@@ -1,4 +1,4 @@
-NTIMES=50
+NTIMES=1
 
 export NTIMES
 
@@ -24,4 +24,4 @@ measure:
 	sudo ../../RAPL/main "SelectionSort.sh" $(NTIMES)
 
 clean:
-	sudo rm -r *.J *.sh *.jar
+	sudo rm -r *.J *.sh *.jar *.txt

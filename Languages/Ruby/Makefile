@@ -1,4 +1,4 @@
-NTIMES=50
+NTIMES=1
 
 export NTIMES
 
@@ -13,4 +13,4 @@ measure:
 
 
 clean:
-	sudo rm -f *.J
+	sudo rm -f *.J *.txt

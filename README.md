@@ -28,3 +28,4 @@ Significado das colunas do ficheiro csv:
 * **Time** : Tempo de execução do algoritmo, em milissegundos;
 * **Temperature** : Temperatura média em ºC de todos os cores;
 * **Memory** : Memória física total atribuída à execução do algoritmo, em kbytes
+* **Cost** : Custo de desenvolvimento do código (em $)

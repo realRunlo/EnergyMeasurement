@@ -1,4 +1,4 @@
-NTIMES=50
+NTIMES=1
 
 export NTIMES
 
@@ -30,4 +30,4 @@ mem_selection:
 	@{ /usr/bin/time -v ./SelectionSort > /dev/null; } 2>&1 | grep "Maximum resident" | sed "s/[^0-9]\+\([0-9]\+\).*/\1/"
 
 clean:
-	rm -f BubbleSort QuickSort SelectionSort *.o *.hi *.J
+	rm -f BubbleSort QuickSort SelectionSort *.o *.hi *.J *.txt

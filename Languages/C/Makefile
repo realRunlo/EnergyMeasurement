@@ -1,30 +1,31 @@
-NTIMES=50
+NTIMES=1
 
 export NTIMES
 
 compile:
-	gcc -O2 -o C_BubbleSort BubbleSort.c
-	gcc -O2 -o C_QuickSort  QuickSort.c
-	gcc -O2 -o C_SelectionSort SelectionSort.c
+	gcc -O2 -o BubbleSort BubbleSort.c
+	gcc -O2 -o QuickSort  QuickSort.c
+	gcc -O2 -o SelectionSort SelectionSort.c
 run:
 	./C_BubbleSort
 
 measure: 
-	sudo ../../RAPL/main "C_BubbleSort" $(NTIMES)
-	sudo ../../RAPL/main "C_QuickSort" $(NTIMES)
-	sudo ../../RAPL/main "C_SelectionSort" $(NTIMES)
+	sudo ../../RAPL/main "BubbleSort" $(NTIMES)
+	sudo ../../RAPL/main "QuickSort" $(NTIMES)
+	sudo ../../RAPL/main "SelectionSort" $(NTIMES)
 
 
 mem_bubble: 
-	@{ /usr/bin/time -v ./C_BubbleSort > /dev/null; } 2>&1 | grep "Maximum resident" | sed "s/[^0-9]\+\([0-9]\+\).*/\1/"
+	@{ /usr/bin/time -v ./BubbleSort > /dev/null; } 2>&1 | grep "Maximum resident" | sed "s/[^0-9]\+\([0-9]\+\).*/\1/"
 
 mem_quick: 
-	@{ /usr/bin/time -v ./C_QuickSort > /dev/null; } 2>&1 | grep "Maximum resident" | sed "s/[^0-9]\+\([0-9]\+\).*/\1/"
+	@{ /usr/bin/time -v ./QuickSort > /dev/null; } 2>&1 | grep "Maximum resident" | sed "s/[^0-9]\+\([0-9]\+\).*/\1/"
 
 mem_selection: 
-	@{ /usr/bin/time -v ./C_SelectionSort > /dev/null; } 2>&1 | grep "Maximum resident" | sed "s/[^0-9]\+\([0-9]\+\).*/\1/"
+	@{ /usr/bin/time -v ./SelectionSort > /dev/null; } 2>&1 | grep "Maximum resident" | sed "s/[^0-9]\+\([0-9]\+\).*/\1/"
 
 clean:
-	rm -rf C_BubbleSort *.o *.J
-	rm -rf C_QuickSort *.o *.J
-	rm -rf C_SelectionSort *.o *.J
+	rm -rf BubbleSort *.o *.J
+	rm -rf QuickSort *.o *.J
+	rm -rf SelectionSort *.o *.J
+	rm -rf *.txt

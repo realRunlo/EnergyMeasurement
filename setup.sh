@@ -36,6 +36,9 @@ make install
 cd ..
 cd ..
 
+echo "### Installing Sloc Cloc and Code (scc)"
+sudo snap install scc
+
 echo "### Installing Java package"
 sudo apt install default-jdk
 

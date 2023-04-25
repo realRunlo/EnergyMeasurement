@@ -1,4 +1,4 @@
-NTIMES=50
+NTIMES=1
 
 export NTIMES
 
@@ -12,4 +12,4 @@ measure:
 	sudo ../../RAPL/main "SelectionSort.php" $(NTIMES)
 
 clean:
-	sudo rm -r *.J
+	sudo rm -r *.J *.txt

@@ -15,7 +15,7 @@
 #include "rapl.h"
 #include "sensors.h"
 
-#define TEMPERATURETHRESHOLD 32.66666793823242
+#define TEMPERATURETHRESHOLD 41.66666793823242
 #define SHORTWATTS 10.0
 #define SHORTTIME 0.001
 #define LONGWHATTS 5.0
@@ -178,6 +178,7 @@ int main (int argc, char **argv)
       fprintf(stderr, "Error running command\n");
       exit(-1);
   }
+  
   char buf[1024];
   while (fgets(buf, sizeof(buf), fp2) != NULL){}
   pclose(fp2);

@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-std=c++11
 
-NTIMES=50
+NTIMES=1
 
 export NTIMES
 
@@ -25,3 +25,4 @@ mem_selection:
 
 clean:
 	rm -f BubbleSort SelectionSort QuickSort *.J
+	rm -rf *.txt
