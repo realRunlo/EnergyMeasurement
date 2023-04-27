@@ -15,7 +15,7 @@
 #include "rapl.h"
 #include "sensors.h"
 
-#define TEMPERATURETHRESHOLD 41.66666793823242
+#define TEMPERATURETHRESHOLD 42.16666793823242
 #define SHORTWATTS 10.0
 #define SHORTTIME 0.001
 #define LONGWHATTS 5.0
@@ -142,6 +142,25 @@ int main (int argc, char **argv)
         
         rapl_before(fp,core);
       
+      ///////////////////Add memory column in csv///////////////////
+      char cmd[1024];
+      int mem;
+      sprintf(cmd, "{ /usr/bin/time -v %s > /dev/null; } 2>&1 | grep 'Maximum resident' | sed 's/[^0-9]\\+\\([0-9]\\+\\).*/\\1/'", command);
+    
+      FILE* fp2 = popen(cmd, "r");
+      if (fp2 == NULL) {
+          fprintf(stderr, "Error running command\n");
+          exit(-1);
+      }
+      
+      char buf[1024];
+      while (fgets(buf, sizeof(buf), fp2) != NULL){}
+      pclose(fp2);
+    
+      mem = atoi(buf);
+  
+  
+  //////////////////////////////////////////////////////////////
 #ifdef RUNTIME
         begin = clock();
 	gettimeofday(&tvb, 0);
@@ -167,26 +186,9 @@ int main (int argc, char **argv)
 #ifdef RUNTIME	
 	fprintf(fp,"%G ,",time_spent);
   fprintf(fp, " %s ,", str_temp);
-
-  ///////////////////Add memory column in csv///////////////////
-  char cmd[1024];
-  int mem;
-  sprintf(cmd, "{ /usr/bin/time -v %s > /dev/null; } 2>&1 | grep 'Maximum resident' | sed 's/[^0-9]\\+\\([0-9]\\+\\).*/\\1/'", command);
-
-  FILE* fp2 = popen(cmd, "r");
-  if (fp2 == NULL) {
-      fprintf(stderr, "Error running command\n");
-      exit(-1);
-  }
-  
-  char buf[1024];
-  while (fgets(buf, sizeof(buf), fp2) != NULL){}
-  pclose(fp2);
-
-  mem = atoi(buf);
-  
   fprintf(fp, " %d \n", mem);
-  //////////////////////////////////////////////////////////////
+
+
 #endif	
     }
     
