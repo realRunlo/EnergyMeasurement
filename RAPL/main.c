@@ -142,36 +142,23 @@ int main (int argc, char **argv)
         
         rapl_before(fp,core);
       
-      ///////////////////Add memory column in csv///////////////////
+     
       char cmd[1024];
       int mem;
+      // Build command to execute, this command measures memory too
       sprintf(cmd, "{ /usr/bin/time -v %s > /dev/null; } 2>&1 | grep 'Maximum resident' | sed 's/[^0-9]\\+\\([0-9]\\+\\).*/\\1/'", command);
     
-      FILE* fp2 = popen(cmd, "r");
-      if (fp2 == NULL) {
-          fprintf(stderr, "Error running command\n");
-          exit(-1);
-      }
-      
-      char buf[1024];
-      while (fgets(buf, sizeof(buf), fp2) != NULL){}
-      pclose(fp2);
-    
-      mem = atoi(buf);
-  
-  
-  //////////////////////////////////////////////////////////////
 #ifdef RUNTIME
         begin = clock();
 	gettimeofday(&tvb, 0);
 #endif
-    /*
-    int status = system(command);
-    if (status != 0) {
-        printf("Error executing command: %s\n", command);
-        return -1;
-    }*/
-  printf("%ld",fib(44));
+
+ FILE* fp2 = popen(cmd, "r");
+      if (fp2 == NULL) {
+          fprintf(stderr, "Error running command\n");
+          exit(-1);
+    }
+
 
 #ifdef RUNTIME
 
@@ -180,8 +167,13 @@ int main (int argc, char **argv)
 	//	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
 	time_spent = ((tva.tv_sec-tvb.tv_sec)*1000000 + tva.tv_usec-tvb.tv_usec)/1000;
 #endif
-
 	rapl_after(fp,core);
+   ///////////////////Add memory column in csv///////////////////
+  char buf[1024];
+  while (fgets(buf, sizeof(buf), fp2) != NULL){}
+  pclose(fp2);
+    
+  mem = atoi(buf);
 
 #ifdef RUNTIME	
 	fprintf(fp,"%G ,",time_spent);
