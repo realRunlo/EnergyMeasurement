@@ -1,11 +1,10 @@
-#!/usr/bin/env python3
 LOGGING = False
 
 # Source: https://www.geeksforgeeks.org/selection-sort/
 
 # Python program for implementation of Selection Sort
 import sys
-array = [10650,56341,77676,47158,34999,22009,19680,41870,31090,30668]
+array = [47853,72245,42132,77384,42235,80527,39068,37034,32424,59537]
   
 # Traverse through all array elements
 for i in range(len(array)):
@@ -21,5 +20,5 @@ for i in range(len(array)):
     # the first element        
     array[i], array[min_idx] = array[min_idx], array[i]
   
-if(LOGGING):
+if LOGGING:
     print('Sorted array:', array)

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 LOGGING = False
 def bubble_sort(arr):
     n = len(arr)
@@ -23,8 +22,8 @@ def bubble_sort(arr):
             break
 
 
-array = [10650,56341,77676,47158,34999,22009,19680,41870,31090,30668]
+array = [47853,72245,42132,77384,42235,80527,39068,37034,32424,59537]
 bubble_sort(array)
 
-if(LOGGING):
+if LOGGING:
     print('Sorted array:', array)

@@ -11,7 +11,7 @@ cd Utils/
 python3 temperatureUpdate.py
 
 #Update the number of times the program will run on each case
-python3 ntimesUpdate.py $NTIMES ../Languages/Python/Makefile ../Languages/C/Makefile ../Languages/Haskell/Makefile ../Languages/Java/Makefile ../Languages/C++/Makefile ../Languages/Prolog/Makefile ../Languages/Ruby/Makefile ../Languages/PHP/Makefile ../Languages/Kotlin/Makefile ../Languages/JavaScript/Makefile ../Languages/C#/Makefile ../Languages/Rust/Makefile ../Languages/Go/Makefile ../Languages/Scala/Makefile
+python3 ntimesUpdate.py $NTIMES ../Languages/Python_Interpreted/Makefile ../Languages/Python_Compilled/Makefile ../Languages/C/Makefile ../Languages/Haskell/Makefile ../Languages/Java/Makefile ../Languages/C++/Makefile ../Languages/Prolog/Makefile ../Languages/Ruby/Makefile ../Languages/PHP/Makefile ../Languages/Kotlin/Makefile ../Languages/JavaScript/Makefile ../Languages/C#/Makefile ../Languages/Rust/Makefile ../Languages/Go/Makefile ../Languages/Scala/Makefile
 
 cd ..
 
@@ -29,7 +29,7 @@ for size in 10 #100 1000
 do
     # Update input arrays with new size
     cd Utils/
-    python3 arrayUpdate.py $size ../Languages/Python/*.py ../Languages/C/*.c ../Languages/Haskell/*.hs ../Languages/Java/*.java ../Languages/C++/*.cpp ../Languages/Prolog/*.pl ../Languages/Ruby/*.rb ../Languages/PHP/*.php ../Languages/Kotlin/*.kt ../Languages/JavaScript/*.js ../Languages/C#/*.cs ../Languages/Rust/*.rs ../Languages/Go/*.go ../Languages/Scala/*.scala
+    python3 arrayUpdate.py $size ../Languages/Python_Interpreted/*.py ../Languages/Python_Compilled/*.py ../Languages/C/*.c ../Languages/Haskell/*.hs ../Languages/Java/*.java ../Languages/C++/*.cpp ../Languages/Prolog/*.pl ../Languages/Ruby/*.rb ../Languages/PHP/*.php ../Languages/Kotlin/*.kt ../Languages/JavaScript/*.js ../Languages/C#/*.cs ../Languages/Rust/*.rs ../Languages/Go/*.go ../Languages/Scala/*.scala
     cd ..
 
     # Build and measure C programs
@@ -51,17 +51,33 @@ do
     make clean
     cd ../..
 
-    # Build and measure Python programs
-    cd Languages/Python/
+    # Build and measure Python Interpreted programs
+    cd Languages/Python_Interpreted/
     make measure 
 
-    # Append Python measurement results to CSV file with size column
+    # Append Python Interpreted measurement results to CSV file with size column
     for file in *.J;
         do 
             fp=$(echo "$file" | sed 's/\.J$//')
             scc $fp > temp_sloccount.txt 
             cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
-            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,Python ,/" | sed "s/.py//" >> ../../measurements.csv; 
+            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,Python Interpreted ,/" | sed "s/.py//" >> ../../measurements.csv; 
+    done
+
+    make clean
+    cd ../..
+
+    # Build and measure Python Compilled programs
+    cd Languages/Python_Compilled/
+    make measure 
+
+    # Append Python Compilled measurement results to CSV file with size column
+    for file in *.J;
+        do 
+            fp=$(echo "$file" | sed 's/\.J$/.py/')
+            scc $fp > temp_sloccount.txt 
+            cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
+            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,Python Compilled ,/" | sed "s/.py//" >> ../../measurements.csv; 
     done
 
     make clean

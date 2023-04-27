@@ -39,6 +39,10 @@ cd ..
 echo "### Installing Sloc Cloc and Code (scc)"
 sudo snap install scc
 
+echo "### Installing Python Compiler (Codon)"
+/bin/bash -c "$(curl -fsSL https://exaloop.io/install.sh)"
+export PATH=/home/$USER/.codon/bin:$PATH
+
 echo "### Installing Java package"
 sudo apt install default-jdk
 
