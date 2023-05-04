@@ -3,17 +3,17 @@ NTIMES=1
 export NTIMES
 
 measure:
-	javac -d . *.java
+	javac *.java
 	echo "#!/bin/bash" > BubbleSort.sh
-	echo "java Languages.Java.BubbleSort" >> BubbleSort.sh
+	echo "java Java.BubbleSort" >> BubbleSort.sh
 	chmod +x BubbleSort.sh
 
 	echo "#!/bin/bash" > QuickSort.sh
-	echo "java Languages.Java.QuickSort" >> QuickSort.sh
+	echo "java Java.QuickSort" >> QuickSort.sh
 	chmod +x QuickSort.sh
 
 	echo "#!/bin/bash" > SelectionSort.sh
-	echo "java Languages.Java.SelectionSort" >> SelectionSort.sh
+	echo "java Java.SelectionSort" >> SelectionSort.sh
 	chmod +x SelectionSort.sh
 
 	sudo ../../RAPL/main "BubbleSort.sh" $(NTIMES)
@@ -31,5 +31,4 @@ mem_selection:
 	@{ /usr/bin/time -v ./SelectionSort > /dev/null; } 2>&1 | grep "Maximum resident" | sed "s/[^0-9]\+\([0-9]\+\).*/\1/"
 	
 clean:
-	sudo rm *.J *.sh *.txt
-	sudo rm -rf Languages/
+	sudo rm *.J *.sh *.txt *.class

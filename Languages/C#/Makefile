@@ -4,9 +4,9 @@ export NTIMES
 
 
 measure:
-	mcs BubbleSort.cs
-	mcs QuickSort.cs
-	mcs SelectionSort.cs
+	mcs -optimize+ BubbleSort.cs
+	mcs -optimize+ QuickSort.cs
+	mcs -optimize+ SelectionSort.cs
 	chmod +x BubbleSort.exe
 	chmod +x QuickSort.exe
 	chmod +x SelectionSort.exe

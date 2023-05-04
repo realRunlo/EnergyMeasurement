@@ -4,13 +4,13 @@ export NTIMES
 
 
 measure:
-	rustc BubbleSort.rs -o BubbleSort
+	rustc BubbleSort.rs -C opt-level=2 -o BubbleSort
 	chmod +x BubbleSort
 
-	rustc QuickSort.rs -o QuickSort
+	rustc QuickSort.rs -C opt-level=2 -o QuickSort
 	chmod +x QuickSort
 
-	rustc SelectionSort.rs -o SelectionSort
+	rustc SelectionSort.rs -C opt-level=2 -o SelectionSort
 	chmod +x SelectionSort
 
 	sudo ../../RAPL/main "BubbleSort" $(NTIMES)

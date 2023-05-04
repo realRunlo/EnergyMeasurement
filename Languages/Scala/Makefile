@@ -4,7 +4,7 @@ export NTIMES
 
 
 measure:
-	scalac *.scala
+	scalac -optimize *.scala
 
 	echo "#!/bin/bash" > BubbleSort.sh
 	echo "scala BubbleSort" >> BubbleSort.sh

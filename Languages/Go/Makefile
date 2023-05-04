@@ -4,9 +4,9 @@ export NTIMES
 
 
 measure:
-	go build BubbleSort.go
-	go build QuickSort.go
-	go build SelectionSort.go
+	go build -gcflags="-N -l -d=ssa/check/on" BubbleSort.go
+	go build -gcflags="-N -l -d=ssa/check/on" QuickSort.go
+	go build -gcflags="-N -l -d=ssa/check/on" SelectionSort.go
 
 	sudo ../../RAPL/main "BubbleSort" $(NTIMES)
 	sudo ../../RAPL/main "QuickSort" $(NTIMES)
