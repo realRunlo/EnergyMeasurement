@@ -14,6 +14,21 @@ def generate_random_array(size):
     return arr
 
 
+def generate_random_array_ordered(size):
+    if size <= 0:
+        print("Invalid size")
+        return None
+
+    # Generate random values for the array
+    arr = [random.randint(0, 100000) for _ in range(size)]
+
+    # Sort the array in ascending order
+    arr = sorted(arr)
+
+    # Return the sorted array
+    return arr
+
+
 def get_file_extension(filename):
     # Split the file name into a list containing the name and extension
     split_filename = filename.split('.')
@@ -26,7 +41,12 @@ def get_file_extension(filename):
     return split_filename[-1]
 
 
-new_array = generate_random_array(int(sys.argv[1]))
+option = int(sys.argv[1])
+
+if option == 500:
+    new_array = generate_random_array(option)
+else:
+    new_array = generate_random_array_ordered(option)
 # Iterate over the input files
 for input_file in sys.argv[2:]:
 

@@ -25,7 +25,7 @@ cd ..
 echo "Size,Cost,Language,Program,Package,Core,GPU,DRAM,Time,Temperature,Memory" > measurements.csv
 
 # Loop over size values
-for size in 10 #100 1000
+for size in 10 #100 500 1000
 do
     # Update input arrays with new size
     cd Utils/
