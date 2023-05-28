@@ -25,7 +25,8 @@ Significado das colunas do ficheiro csv:
 * **Core** : Energia consumida por todos os cores e caches;
 * **GPU** : Energia consumida pelo GPU;
 * **DRAM** : Estima a energia consumida pela RAM;
-* **Time** : Tempo de execução do algoritmo, em milissegundos;
-* **Temperature** : Temperatura média em ºC de todos os cores;
-* **Memory** : Memória física total atribuída à execução do algoritmo, em kbytes
-* **Cost** : Custo de desenvolvimento do código (em $)
+* **Time** : Tempo de execução do algoritmo(em ms)
+* **Temperature** : Temperatura média de todos os cores (em ºC);
+* **Memory** : Memória física total atribuída à execução do algoritmo (em KBytes);
+* **Cost** : Custo de desenvolvimento do código (em $);
+* **PowerLimit** : Limitação da potência dos cores (em Watts)
