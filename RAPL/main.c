@@ -14,11 +14,11 @@
 #include "rapl.h"
 #include "sensors.h"
 
-#define TEMPERATURETHRESHOLD 39.83333206176758
-#define SHORTWATTS 10.0
-#define SHORTTIME 0.001
-#define LONGWHATTS 5.0
-#define LONGTIME 10.0
+#define TEMPERATURETHRESHOLD 49.83333206176758
+#define LONGWHATTS 1000
+#define LONGTIME 100
+#define SHORTWHATTS 5
+#define SHORTTIME 10000
 #define RUNTIME
 
 long fib(int n)
@@ -77,21 +77,20 @@ int main(int argc, char **argv)
 
     // for each package die, set a power cap of 100 Watts for short_term and 50 Watts for long_term constraints
     // a time window of 0 leaves the time window unchanged
-    rl_short.watts = SHORTWATTS;
-    rl_short.seconds = SHORTTIME;
     rl_long.watts = LONGWHATTS;
     rl_long.seconds = LONGTIME;
+    rl_short.watts = SHORTWHATTS;
+    rl_short.seconds = SHORTTIME;
     for (q = 0; q < n; q++)
     {
         for (j = 0; j < d; j++)
         {
-            if (raplcap_pd_set_limits(&rc, q, j, RAPLCAP_ZONE_PACKAGE, &rl_long, &rl_short))
+            if (raplcap_pd_set_limits(&rc, q, j, RAPLCAP_ZONE_PACKAGE, NULL, &rl_short))
             {
                 perror("raplcap_pd_set_limits");
             }
         }
     }
-
     // for each package die, enable the power caps
     // this could be done before setting caps, at the risk of enabling unknown power cap values first
     for (q = 0; q < n; q++)
@@ -137,10 +136,10 @@ int main(int argc, char **argv)
         temperature = getTemperature();
         
         for (int currentTrys = 0; currentTrys < maxTrys && temperature>TEMPERATURETHRESHOLD; currentTrys++,temperature = getTemperature()) //NEW
-          {
+        {
             printf("Sleeping\n");
             sleep(1);
-          }
+        }
         sprintf(str_temp, "%.1f", temperature);
 
         fprintf(fp, "%s , ", argv[1]);
@@ -155,10 +154,11 @@ int main(int argc, char **argv)
         gettimeofday(&tvb, 0);
 #endif
         ///////////////////Add memory column in csv///////////////////
+        
         char cmd[1024];
         int mem;
         sprintf(cmd, "{ /usr/bin/time -v %s > /dev/null; } 2>&1 | grep 'Maximum resident' | sed 's/[^0-9]\\+\\([0-9]\\+\\).*/\\1/'", command);
-
+        
         FILE *fp2 = popen(cmd, "r");
         if (fp2 == NULL)
         {
@@ -173,7 +173,7 @@ int main(int argc, char **argv)
         pclose(fp2);
 
         mem = atoi(buf);
-
+        
 #ifdef RUNTIME
 
         end = clock();

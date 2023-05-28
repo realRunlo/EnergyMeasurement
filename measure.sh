@@ -22,258 +22,265 @@ make
 
 cd ..
       
-echo "Size,Cost,Language,Program,Package,Core,GPU,DRAM,Time,Temperature,Memory" > measurements.csv
+echo "Size,Cost,PowerLimit,Language,Program,Package,Core,GPU,DRAM,Time,Temperature,Memory" > measurements.csv
 
-# Loop over size values
-for size in 10 100 500 1000
+# Loop over constraint limits
+for limit in 5 10 50 100 1000
 do
-    # Update input arrays with new size
     cd Utils/
-    python3 arrayUpdate.py $size ../Languages/Python_Interpreted/*.py ../Languages/Python_Compilled/*.py ../Languages/C/*.c ../Languages/Haskell/*.hs ../Languages/Java/*.java ../Languages/C++/*.cpp ../Languages/Prolog/*.pl ../Languages/Ruby/*.rb ../Languages/PHP/*.php ../Languages/Kotlin/*.kt ../Languages/JavaScript/*.js ../Languages/C#/*.cs ../Languages/Rust/*.rs ../Languages/Go/*.go ../Languages/Scala/*.scala
+    python3 raplCapUpdate.py $limit ../RAPL/main.c
     cd ..
+    # Loop over size values
+    for size in 10 100 500 1000
+    do
+        # Update input arrays with new size
+        cd Utils/
+        python3 arrayUpdate.py $size ../Languages/Python_Interpreted/*.py ../Languages/Python_Compilled/*.py ../Languages/C/*.c ../Languages/Haskell/*.hs ../Languages/Java/*.java ../Languages/C++/*.cpp ../Languages/Prolog/*.pl ../Languages/Ruby/*.rb ../Languages/PHP/*.php ../Languages/Kotlin/*.kt ../Languages/JavaScript/*.js ../Languages/C#/*.cs ../Languages/Rust/*.rs ../Languages/Go/*.go ../Languages/Scala/*.scala
+        cd ..
 
-    # Build and measure C programs
-    cd Languages/C/
-    make
-    make measure 
+        # Build and measure C programs
+        cd Languages/C/
+        make
+        make measure 
 
-    # Append C measurement results to CSV file with size column
-    for file in *.J;
-        do 
-            fp=$(echo "$file" | sed 's/\.J$/.c/')
-            scc $fp > temp_sloccount.txt 
-            cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
-            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,C ,/" >> ../../measurements.csv; 
+        # Append C measurement results to CSV file with size column
+        for file in *.J;
+            do 
+                fp=$(echo "$file" | sed 's/\.J$/.c/')
+                scc $fp > temp_sloccount.txt 
+                cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
+                tail -n +2 -q "$file" | sed "s/^/ $size,$cost,$limit,C ,/" >> ../../measurements.csv; 
+        done
+
+
+
+        make clean
+        cd ../..
+
+        # Build and measure Python Interpreted programs
+        cd Languages/Python_Interpreted/
+        make measure 
+
+        # Append Python Interpreted measurement results to CSV file with size column
+        for file in *.J;
+            do 
+                fp=$(echo "$file" | sed 's/\.J$//')
+                scc $fp > temp_sloccount.txt 
+                cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
+                tail -n +2 -q "$file" | sed "s/^/ $size,$cost,$limit,Python Interpreted ,/" | sed "s/.py//" >> ../../measurements.csv; 
+        done
+
+        make clean
+        cd ../..
+
+        # Build and measure Python Compilled programs
+        cd Languages/Python_Compilled/
+        make measure 
+
+        # Append Python Compilled measurement results to CSV file with size column
+        for file in *.J;
+            do 
+                fp=$(echo "$file" | sed 's/\.J$/.py/')
+                scc $fp > temp_sloccount.txt 
+                cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
+                tail -n +2 -q "$file" | sed "s/^/ $size,$cost,$limit,Python Compilled ,/" | sed "s/.py//" >> ../../measurements.csv; 
+        done
+
+        make clean
+        cd ../..
+
+        # Build and measure Haskell programs
+        cd Languages/Haskell/
+        make measure 
+
+        # Append Haskell measurement results to CSV file with size column
+        for file in *.J;
+            do 
+                fp=$(echo "$file" | sed 's/\.J$/.hs/')
+                scc $fp > temp_sloccount.txt 
+                cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
+                tail -n +2 -q "$file" | sed "s/^/ $size,$cost,$limit,Haskell ,/"  >> ../../measurements.csv; 
+        done
+
+        make clean
+        cd ../..
+
+        # Build and measure Java programs
+        cd Languages/Java/
+        make measure 
+
+        # Append Java measurement results to CSV file with size column
+        for file in *.J;
+            do 
+                fp=$(echo "$file" | sed 's/\.sh\.J$/.java/')
+                scc $fp > temp_sloccount.txt 
+                cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
+                tail -n +2 -q "$file" | sed "s/^/ $size,$cost,$limit,Java ,/" | sed "s/.sh//"  >> ../../measurements.csv; 
+        done
+
+        make clean
+        cd ../..
+
+        # Build and measure C++ programs
+        cd Languages/C++/
+        make measure 
+
+        # Append C++ measurement results to CSV file with size column
+        for file in *.J;
+            do 
+                fp=$(echo "$file" | sed 's/\.J$/.cpp/')
+                scc $fp > temp_sloccount.txt 
+                cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
+                tail -n +2 -q "$file" | sed "s/^/ $size,$cost,$limit,C++ ,/"  >> ../../measurements.csv; 
+        done
+
+        make clean
+        cd ../..
+
+        # Build and measure Prolog programs
+        cd Languages/Prolog/
+        make measure 
+
+        # Append Prolog measurement results to CSV file with size column
+        for file in *.J;
+            do 
+                fp=$(echo "$file" | sed 's/\.J$/.pl/')
+                scc $fp > temp_sloccount.txt 
+                cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
+                tail -n +2 -q "$file" | sed "s/^/ $size,$cost,$limit,Prolog ,/"  >> ../../measurements.csv; 
+        done
+
+        make clean
+        cd ../..
+
+        # Build and measure Ruby programs
+        cd Languages/Ruby/
+        make measure 
+
+        # Append Ruby measurement results to CSV file with size column
+        for file in *.J;
+            do 
+                fp=$(echo "$file" | sed 's/\.J$//')
+                scc $fp > temp_sloccount.txt 
+                cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
+                tail -n +2 -q "$file" | sed "s/^/ $size,$cost,$limit,Ruby ,/" | sed "s/.rb//" >> ../../measurements.csv; 
+        done
+
+        make clean
+        cd ../..
+
+        # Build and measure PHP programs
+        cd Languages/PHP/
+        make measure 
+
+        # Append PHP measurement results to CSV file with size column
+        for file in *.J;
+            do 
+                fp=$(echo "$file" | sed 's/\.J$//')
+                scc $fp > temp_sloccount.txt 
+                cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
+                tail -n +2 -q "$file" | sed "s/^/ $size,$cost,$limit,PHP ,/" | sed "s/.php//" >> ../../measurements.csv; 
+        done
+
+        make clean
+        cd ../..
+
+        # Build and measure Kotlin programs
+        cd Languages/Kotlin/
+        make measure 
+
+        # Append Kotlin measurement results to CSV file with size column
+        for file in *.J;
+            do 
+                fp=$(echo "$file" | sed 's/\.sh\.J$/.kt/')
+                scc $fp > temp_sloccount.txt 
+                cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
+                tail -n +2 -q "$file" | sed "s/^/ $size,$cost,$limit,Kotlin ,/" | sed "s/.sh//" >> ../../measurements.csv; 
+        done
+
+        make clean
+        cd ../..
+
+        # Build and measure JavaScript programs
+        cd Languages/JavaScript/
+        make measure 
+
+        # Append JavaScript measurement results to CSV file with size column
+        for file in *.J;
+            do 
+                fp=$(echo "$file" | sed 's/\.js\.J$/.js/')
+                scc $fp > temp_sloccount.txt 
+                cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
+                tail -n +2 -q "$file" | sed "s/^/ $size,$cost,$limit,JavaScript ,/" | sed "s/.js//" >> ../../measurements.csv; 
+        done
+
+        make clean
+        cd ../..
+
+        # Build and measure C# programs
+        cd Languages/C#/
+        make measure 
+
+        # Append C# measurement results to CSV file with size column
+        for file in *.J;
+            do 
+                fp=$(echo "$file" | sed 's/\.J$//; s/\.exe$/.cs/')
+                scc $fp > temp_sloccount.txt 
+                cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
+                tail -n +2 -q "$file" | sed "s/^/ $size,$cost,$limit,C# ,/" | sed "s/.exe//">> ../../measurements.csv; 
+        done
+
+        make clean
+        cd ../..
+
+        # Build and measure Rust programs
+        cd Languages/Rust/
+        make measure 
+
+        # Append Rust measurement results to CSV file with size column
+        for file in *.J;
+            do 
+                fp=$(echo "$file" | sed 's/\.J$/.rs/')
+                scc $fp > temp_sloccount.txt 
+                cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
+                tail -n +2 -q "$file" | sed "s/^/ $size,$cost,$limit,Rust ,/" >> ../../measurements.csv; 
+        done
+
+        make clean
+        cd ../..
+
+        # Build and measure Go programs
+        cd Languages/Go/
+        make measure 
+
+        # Append Go measurement results to CSV file with size column
+        for file in *.J;
+            do 
+                fp=$(echo "$file" | sed 's/\.J$/.go/')
+                scc $fp > temp_sloccount.txt 
+                cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
+                tail -n +2 -q "$file" | sed "s/^/ $size,$cost,$limit,Go ,/" >> ../../measurements.csv; 
+        done
+
+        make clean
+        cd ../..
+
+        # Build and measure Scala programs
+        cd Languages/Scala/
+        make measure 
+
+        # Append Scala measurement results to CSV file with size column
+        for file in *.J;
+            do 
+                fp=$(echo "$file" | sed 's/\.sh\.J$/.scala/')
+                scc $fp > temp_sloccount.txt 
+                cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
+                tail -n +2 -q "$file" | sed "s/^/ $size,$cost,$limit,Scala ,/" | sed "s/.sh//" >> ../../measurements.csv; 
+        done
+
+        make clean
+        cd ../..
     done
-
-
-
-    make clean
-    cd ../..
-
-    # Build and measure Python Interpreted programs
-    cd Languages/Python_Interpreted/
-    make measure 
-
-    # Append Python Interpreted measurement results to CSV file with size column
-    for file in *.J;
-        do 
-            fp=$(echo "$file" | sed 's/\.J$//')
-            scc $fp > temp_sloccount.txt 
-            cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
-            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,Python Interpreted ,/" | sed "s/.py//" >> ../../measurements.csv; 
-    done
-
-    make clean
-    cd ../..
-
-    # Build and measure Python Compilled programs
-    cd Languages/Python_Compilled/
-    make measure 
-
-    # Append Python Compilled measurement results to CSV file with size column
-    for file in *.J;
-        do 
-            fp=$(echo "$file" | sed 's/\.J$/.py/')
-            scc $fp > temp_sloccount.txt 
-            cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
-            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,Python Compilled ,/" | sed "s/.py//" >> ../../measurements.csv; 
-    done
-
-    make clean
-    cd ../..
-
-    # Build and measure Haskell programs
-    cd Languages/Haskell/
-    make measure 
-
-    # Append Haskell measurement results to CSV file with size column
-    for file in *.J;
-        do 
-            fp=$(echo "$file" | sed 's/\.J$/.hs/')
-            scc $fp > temp_sloccount.txt 
-            cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
-            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,Haskell ,/"  >> ../../measurements.csv; 
-    done
-
-    make clean
-    cd ../..
-
-    # Build and measure Java programs
-    cd Languages/Java/
-    make measure 
-
-    # Append Java measurement results to CSV file with size column
-    for file in *.J;
-        do 
-            fp=$(echo "$file" | sed 's/\.sh\.J$/.java/')
-            scc $fp > temp_sloccount.txt 
-            cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
-            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,Java ,/" | sed "s/.sh//"  >> ../../measurements.csv; 
-    done
-
-    make clean
-    cd ../..
-
-    # Build and measure C++ programs
-    cd Languages/C++/
-    make measure 
-
-    # Append C++ measurement results to CSV file with size column
-    for file in *.J;
-        do 
-            fp=$(echo "$file" | sed 's/\.J$/.cpp/')
-            scc $fp > temp_sloccount.txt 
-            cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
-            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,C++ ,/"  >> ../../measurements.csv; 
-    done
-
-    make clean
-    cd ../..
-
-    # Build and measure Prolog programs
-    cd Languages/Prolog/
-    make measure 
-
-    # Append Prolog measurement results to CSV file with size column
-    for file in *.J;
-        do 
-            fp=$(echo "$file" | sed 's/\.J$/.pl/')
-            scc $fp > temp_sloccount.txt 
-            cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
-            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,Prolog ,/"  >> ../../measurements.csv; 
-    done
-
-    make clean
-    cd ../..
-
-    # Build and measure Ruby programs
-    cd Languages/Ruby/
-    make measure 
-
-    # Append Ruby measurement results to CSV file with size column
-    for file in *.J;
-        do 
-            fp=$(echo "$file" | sed 's/\.J$//')
-            scc $fp > temp_sloccount.txt 
-            cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
-            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,Ruby ,/" | sed "s/.rb//" >> ../../measurements.csv; 
-    done
-
-    make clean
-    cd ../..
-
-    # Build and measure PHP programs
-    cd Languages/PHP/
-    make measure 
-
-    # Append PHP measurement results to CSV file with size column
-    for file in *.J;
-        do 
-            fp=$(echo "$file" | sed 's/\.J$//')
-            scc $fp > temp_sloccount.txt 
-            cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
-            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,PHP ,/" | sed "s/.php//" >> ../../measurements.csv; 
-    done
-
-    make clean
-    cd ../..
-
-    # Build and measure Kotlin programs
-    cd Languages/Kotlin/
-    make measure 
-
-    # Append Kotlin measurement results to CSV file with size column
-    for file in *.J;
-        do 
-            fp=$(echo "$file" | sed 's/\.sh\.J$/.kt/')
-            scc $fp > temp_sloccount.txt 
-            cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
-            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,Kotlin ,/" | sed "s/.sh//" >> ../../measurements.csv; 
-    done
-
-    make clean
-    cd ../..
-
-    # Build and measure JavaScript programs
-    cd Languages/JavaScript/
-    make measure 
-
-    # Append JavaScript measurement results to CSV file with size column
-    for file in *.J;
-        do 
-            fp=$(echo "$file" | sed 's/\.js\.J$/.js/')
-            scc $fp > temp_sloccount.txt 
-            cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
-            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,JavaScript ,/" | sed "s/.js//" >> ../../measurements.csv; 
-    done
-
-    make clean
-    cd ../..
-
-    # Build and measure C# programs
-    cd Languages/C#/
-    make measure 
-
-    # Append C# measurement results to CSV file with size column
-    for file in *.J;
-        do 
-            fp=$(echo "$file" | sed 's/\.J$//; s/\.exe$/.cs/')
-            scc $fp > temp_sloccount.txt 
-            cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
-            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,C# ,/" | sed "s/.exe//">> ../../measurements.csv; 
-    done
-
-    make clean
-    cd ../..
-
-    # Build and measure Rust programs
-    cd Languages/Rust/
-    make measure 
-
-    # Append Rust measurement results to CSV file with size column
-    for file in *.J;
-        do 
-            fp=$(echo "$file" | sed 's/\.J$/.rs/')
-            scc $fp > temp_sloccount.txt 
-            cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
-            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,Rust ,/" >> ../../measurements.csv; 
-    done
-
-    make clean
-    cd ../..
-
-    # Build and measure Go programs
-    cd Languages/Go/
-    make measure 
-
-    # Append Go measurement results to CSV file with size column
-    for file in *.J;
-        do 
-            fp=$(echo "$file" | sed 's/\.J$/.go/')
-            scc $fp > temp_sloccount.txt 
-            cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
-            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,Go ,/" >> ../../measurements.csv; 
-    done
-
-    make clean
-    cd ../..
-
-    # Build and measure Scala programs
-    cd Languages/Scala/
-    make measure 
-
-    # Append Scala measurement results to CSV file with size column
-    for file in *.J;
-        do 
-            fp=$(echo "$file" | sed 's/\.sh\.J$/.scala/')
-            scc $fp > temp_sloccount.txt 
-            cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
-            tail -n +2 -q "$file" | sed "s/^/ $size,$cost,Scala ,/" | sed "s/.sh//" >> ../../measurements.csv; 
-    done
-
-    make clean
-    cd ../..
 done
 
 cd RAPL/
