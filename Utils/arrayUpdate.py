@@ -43,7 +43,7 @@ def get_file_extension(filename):
 
 option = int(sys.argv[1])
 
-if option == 500:
+if option == 1000:
     new_array = generate_random_array(option)
 else:
     new_array = generate_random_array_ordered(option)
