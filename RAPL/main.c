@@ -81,16 +81,20 @@ int main(int argc, char **argv)
     rl_long.seconds = LONGTIME;
     rl_short.watts = SHORTWHATTS;
     rl_short.seconds = SHORTTIME;
-    for (q = 0; q < n; q++)
-    {
-        for (j = 0; j < d; j++)
+    if(SHORTWHATTS != -1){
+        for (q = 0; q < n; q++)
         {
-            if (raplcap_pd_set_limits(&rc, q, j, RAPLCAP_ZONE_PACKAGE, NULL, &rl_short))
+            for (j = 0; j < d; j++)
             {
-                perror("raplcap_pd_set_limits");
+                if (raplcap_pd_set_limits(&rc, q, j, RAPLCAP_ZONE_PACKAGE, NULL, &rl_short))
+                {
+                    perror("raplcap_pd_set_limits");
+                }
             }
         }
     }
+
+
     // for each package die, enable the power caps
     // this could be done before setting caps, at the risk of enabling unknown power cap values first
     for (q = 0; q < n; q++)

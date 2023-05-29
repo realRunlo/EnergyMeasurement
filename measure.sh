@@ -25,7 +25,7 @@ cd ..
 echo "Size,Cost,PowerLimit,Language,Program,Package,Core,GPU,DRAM,Time,Temperature,Memory" > measurements.csv
 
 # Loop over constraint limits
-for limit in 5 10 50 100 1000
+for limit in 5 10 50 100 -1
 do
     cd Utils/
     python3 raplCapUpdate.py $limit ../RAPL/main.c
