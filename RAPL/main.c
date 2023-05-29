@@ -15,10 +15,7 @@
 #include "sensors.h"
 
 #define TEMPERATURETHRESHOLD 49.83333206176758
-#define LONGWHATTS 1000
-#define LONGTIME 100
-#define SHORTWHATTS 5
-#define SHORTTIME 10000
+#define WHATTSCAP 50
 #define RUNTIME
 
 long fib(int n)
@@ -75,18 +72,18 @@ int main(int argc, char **argv)
         return -1;
     }
 
-    // for each package die, set a power cap of 100 Watts for short_term and 50 Watts for long_term constraints
+    // for each package die, set a power cap of same limit for both long and short
     // a time window of 0 leaves the time window unchanged
-    rl_long.watts = LONGWHATTS;
-    rl_long.seconds = LONGTIME;
-    rl_short.watts = SHORTWHATTS;
-    rl_short.seconds = SHORTTIME;
-    if(SHORTWHATTS != -1){
+    rl_long.watts = WHATTSCAP;
+    rl_long.seconds = 0;
+    rl_short.watts = WHATTSCAP;
+    rl_short.seconds = 0;
+    if(WHATTSCAP != -1){
         for (q = 0; q < n; q++)
         {
             for (j = 0; j < d; j++)
             {
-                if (raplcap_pd_set_limits(&rc, q, j, RAPLCAP_ZONE_PACKAGE, NULL, &rl_short))
+                if (raplcap_pd_set_limits(&rc, q, j, RAPLCAP_ZONE_PACKAGE, &rl_long, &rl_short))
                 {
                     perror("raplcap_pd_set_limits");
                 }
