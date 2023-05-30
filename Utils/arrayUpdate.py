@@ -8,24 +8,12 @@ def generate_random_array(size):
         return None
     
     # Generate random values for the array
-    arr = [random.randint(0, 100000) for _ in range(size)]
+    min_int = -1147483640
+    max_int = 1147483640
+
+    arr = [random.randint(min_int, max_int) for _ in range(size)]
 
     # Return the unsorted array
-    return arr
-
-
-def generate_random_array_ordered(size):
-    if size <= 0:
-        print("Invalid size")
-        return None
-
-    # Generate random values for the array
-    arr = [random.randint(0, 100000) for _ in range(size)]
-
-    # Sort the array in ascending order
-    arr = sorted(arr)
-
-    # Return the sorted array
     return arr
 
 
@@ -42,11 +30,8 @@ def get_file_extension(filename):
 
 
 option = int(sys.argv[1])
+new_array = generate_random_array(option)
 
-if option == 1000:
-    new_array = generate_random_array(option)
-else:
-    new_array = generate_random_array_ordered(option)
 # Iterate over the input files
 for input_file in sys.argv[2:]:
 
