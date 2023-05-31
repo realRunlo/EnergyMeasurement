@@ -11,7 +11,7 @@ cd Utils/
 python3 temperatureUpdate.py
 
 #Update the number of times the program will run on each case
-python3 ntimesUpdate.py $NTIMES ../Languages/Python_Interpreted/Makefile ../Languages/Python_Compilled/Makefile ../Languages/C/Makefile ../Languages/Haskell/Makefile ../Languages/Java/Makefile ../Languages/C++/Makefile ../Languages/Prolog/Makefile ../Languages/Ruby/Makefile ../Languages/PHP/Makefile ../Languages/Kotlin/Makefile ../Languages/JavaScript/Makefile ../Languages/C#/Makefile ../Languages/Rust/Makefile ../Languages/Go/Makefile ../Languages/Scala/Makefile
+python3 ntimesUpdate.py $NTIMES ../Languages/Python_Interpreted/Makefile ../Languages/Python_Compilled/Makefile ../Languages/C/Makefile ../Languages/Haskell/Makefile ../Languages/Java/Makefile ../Languages/C++/Makefile ../Languages/Prolog/Makefile ../Languages/Ruby/Makefile ../Languages/PHP/Makefile ../Languages/Kotlin/Makefile ../Languages/JavaScript/Makefile ../Languages/C#/Makefile ../Languages/Rust/Makefile ../Languages/Go/Makefile
 
 cd ..
 
@@ -31,11 +31,11 @@ do
     python3 raplCapUpdate.py $limit ../RAPL/main.c
     cd ..
     # Loop over size values
-    for size in 10 100 1000 10000 100000
+    for size in 10 100 1000 10000
     do
         # Update input arrays with new size
         cd Utils/
-        python3 arrayUpdate.py $size ../Languages/Python_Interpreted/*.py ../Languages/Python_Compilled/*.py ../Languages/C/*.c ../Languages/Haskell/*.hs ../Languages/Java/*.java ../Languages/C++/*.cpp ../Languages/Prolog/*.pl ../Languages/Ruby/*.rb ../Languages/PHP/*.php ../Languages/Kotlin/*.kt ../Languages/JavaScript/*.js ../Languages/C#/*.cs ../Languages/Rust/*.rs ../Languages/Go/*.go ../Languages/Scala/*.scala
+        python3 arrayUpdate.py $size ../Languages/Python_Interpreted/*.py ../Languages/Python_Compilled/*.py ../Languages/C/*.c ../Languages/Haskell/*.hs ../Languages/Java/*.java ../Languages/C++/*.cpp ../Languages/Prolog/*.pl ../Languages/Ruby/*.rb ../Languages/PHP/*.php ../Languages/Kotlin/*.kt ../Languages/JavaScript/*.js ../Languages/C#/*.cs ../Languages/Rust/*.rs ../Languages/Go/*.go
         cd ..
 
         # Build and measure C programs
@@ -260,22 +260,6 @@ do
                 scc $fp > temp_sloccount.txt 
                 cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
                 tail -n +2 -q "$file" | sed "s/^/ $size,$cost,$limit,Go ,/" >> ../../measurements.csv; 
-        done
-
-        make clean
-        cd ../..
-
-        # Build and measure Scala programs
-        cd Languages/Scala/
-        make measure 
-
-        # Append Scala measurement results to CSV file with size column
-        for file in *.J;
-            do 
-                fp=$(echo "$file" | sed 's/\.sh\.J$/.scala/')
-                scc $fp > temp_sloccount.txt 
-                cost=$(python3 ../../Utils/getDevelopmentCost.py temp_sloccount.txt)
-                tail -n +2 -q "$file" | sed "s/^/ $size,$cost,$limit,Scala ,/" | sed "s/.sh//" >> ../../measurements.csv; 
         done
 
         make clean
