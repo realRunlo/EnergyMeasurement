@@ -14,7 +14,7 @@
 #include "rapl.h"
 #include "sensors.h"
 
-#define TEMPERATURETHRESHOLD 42.83333206176758
+#define TEMPERATURETHRESHOLD 47.16666793823242
 #define WHATTSCAP -1
 #define RUNTIME
 
