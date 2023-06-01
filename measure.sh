@@ -31,7 +31,7 @@ do
     python3 raplCapUpdate.py $limit ../RAPL/main.c
     cd ..
     # Loop over size values
-    for size in 100 1000 2500 5000
+    for size in 1000 2500 5000
     do
         # Update input arrays with new size
         cd Utils/
