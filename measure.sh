@@ -31,7 +31,7 @@ do
     python3 raplCapUpdate.py $limit ../RAPL/main.c
     cd ..
     # Loop over size values
-    for size in 10 100 1000 10000
+    for size in 100 1000 2500 5000
     do
         # Update input arrays with new size
         cd Utils/
@@ -271,5 +271,5 @@ cd RAPL/
 make clean
 cd ..
 
-awk -F',' 'BEGIN{OFS=","} {print $2, $3, $1, $4, $5, $6, $7, $8, $9, $10, $11}' measurements.csv > tmp.csv
+awk -F',' 'BEGIN{OFS=","} {print $4, $5, $3, $1, $2, $6, $7, $8, $9, $10, $11, $12}' measurements.csv > tmp.csv
 mv tmp.csv measurements.csv
