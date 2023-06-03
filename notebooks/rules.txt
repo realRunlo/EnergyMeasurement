@@ -1,0 +1,118 @@
+Sup = 0.07143   Conf = 1.00000     Language=JavaScript    <--    Memory=]37326.0000 : 80882.0000]
+Sup = 0.04762   Conf = 1.00000     Language=JavaScript    <--    Cost=727
+Sup = 0.04762   Conf = 1.00000     Language=Haskell    <--    Memory=]6358.0000 : 8858.0000]
+Sup = 0.02381   Conf = 1.00000     Language=Haskell    <--    Cost=374
+Sup = 0.02381   Conf = 1.00000     Language=Haskell    <--    Cost=328  &  Program=QuickSort
+Sup = 0.01587   Conf = 1.00000     Language=Haskell    <--    Memory=]10618.0000 : 11276.0000]
+Sup = 0.03324   Conf = 1.00000     Language=PHP    <--    Memory=]24326.0000 : 26130.0000]
+Sup = 0.02381   Conf = 1.00000     Language=PHP    <--    Cost=968
+Sup = 0.02381   Conf = 1.00000     Language=PHP    <--    Cost=703
+Sup = 0.02381   Conf = 1.00000     Language=PHP    <--    Cost=680
+Sup = 0.07143   Conf = 1.00000     Language=C#    <--    Memory=]14308.0000 : 16406.0000]
+Sup = 0.02381   Conf = 1.00000     Language=C#    <--    Cost=871
+Sup = 0.02381   Conf = 1.00000     Language=C#    <--    Cost=1285
+Sup = 0.02381   Conf = 1.00000     Language=C#    <--    Cost=823  &  Program=SelectionSort
+Sup = 0.01127   Conf = 1.00000     Language=C#    <--    Package=]0.1057 : 0.1161]  &  Time=]52.5000 : 55.5000]
+Sup = 0.02381   Conf = 1.00000     Language=Java    <--    Cost=919  &  Program=QuickSort
+Sup = 0.02302   Conf = 1.00000     Language=Java    <--    Core=]0.4763 : 0.5049]  &  Memory=]26856.0000 : 27226.0000]
+Sup = 0.02159   Conf = 1.00000     Language=Java    <--    Cost=919  &  Memory=]26856.0000 : 27226.0000]
+Sup = 0.02149   Conf = 1.00000     Language=Java    <--    Memory=]26856.0000 : 27226.0000]  &  Program=BubbleSort
+Sup = 0.02121   Conf = 1.00000     Language=Java    <--    Memory=]26856.0000 : 27226.0000]  &  Program=SelectionSort
+Sup = 0.02121   Conf = 1.00000     Language=Java    <--    Cost=656  &  Memory=]26856.0000 : 27226.0000]
+Sup = 0.01340   Conf = 1.00000     Language=Java    <--    Package=]0.5801 : 0.6031]  &  Memory=]26856.0000 : 27226.0000]
+Sup = 0.01210   Conf = 1.00000     Language=Java    <--    Package=]0.5602 : 0.5801]  &  Memory=]26856.0000 : 27226.0000]
+Sup = 0.01114   Conf = 1.00000     Language=Java    <--    Package=]0.5602 : 0.5801]  &  Core=]0.4763 : 0.5049]
+Sup = 0.07143   Conf = 1.00000     Language=Ruby    <--    Memory=]20278.0000 : 23490.0000]
+Sup = 0.02381   Conf = 1.00000     Language=Ruby    <--    Cost=538  &  Program=BubbleSort
+Sup = 0.02381   Conf = 1.00000     Language=Ruby    <--    Cost=561  &  Program=QuickSort
+Sup = 0.01587   Conf = 1.00000     Language=Ruby    <--    Core=]9.1209 : 16.1898]
+Sup = 0.01587   Conf = 1.00000     Language=Ruby    <--    Package=]9.6015 : 17.3096]
+Sup = 0.07143   Conf = 1.00000     Language=Python Compilled    <--    Memory=]5304.0000 : 6358.0000]
+Sup = 0.01206   Conf = 1.00000     Language=Python Compilled    <--    Package=]0.0533 : 0.0574]  &  Cost=421
+Sup = 0.07143   Conf = 1.00000     Language=C++    <--    Memory=]2758.0000 : 4164.0000]
+Sup = 0.02381   Conf = 1.00000     Language=C++    <--    Cost=895
+Sup = 0.07143   Conf = 1.00000     Language=C    <--    Memory=]-oo : 1490.0000]
+Sup = 0.02381   Conf = 1.00000     Language=C    <--    Cost=1016
+Sup = 0.02381   Conf = 1.00000     Language=C    <--    Cost=992
+Sup = 0.02381   Conf = 1.00000     Language=C    <--    Cost=919  &  Program=SelectionSort
+Sup = 0.07143   Conf = 1.00000     Language=Rust    <--    Memory=]1876.0000 : 2758.0000]
+Sup = 0.02381   Conf = 1.00000     Language=Rust    <--    Cost=397
+Sup = 0.02381   Conf = 1.00000     Language=Rust    <--    Cost=444  &  Program=SelectionSort
+Sup = 0.02127   Conf = 1.00000     Language=Rust    <--    Time=]10.5000 : 11.5000]  &  Cost=775
+Sup = 0.01930   Conf = 1.00000     Language=Rust    <--    Package=]0.0276 : 0.0302]  &  Cost=775
+Sup = 0.01378   Conf = 1.00000     Language=Rust    <--    Core=]0.0152 : 0.0163]  &  Cost=775
+Sup = 0.07143   Conf = 1.00000     Language=Go    <--    Memory=]1490.0000 : 1876.0000]
+Sup = 0.02381   Conf = 1.00000     Language=Go    <--    Cost=491
+Sup = 0.02381   Conf = 1.00000     Language=Go    <--    Cost=823  &  Program=QuickSort
+Sup = 0.02381   Conf = 1.00000     Language=Prolog    <--    Memory=]8858.0000 : 9830.0000]
+Sup = 0.02381   Conf = 1.00000     Language=Prolog    <--    Cost=514
+Sup = 0.02381   Conf = 1.00000     Language=Prolog    <--    Cost=632  &  Program=QuickSort
+Sup = 0.02381   Conf = 1.00000     Language=Prolog    <--    Cost=421  &  Program=SelectionSort
+Sup = 0.01587   Conf = 1.00000     Language=Prolog    <--    Memory=]80882.0000 : +oo[
+Sup = 0.02381   Conf = 1.00000     Language=Python Interpreted    <--    Memory=]9830.0000 : 10618.0000]
+Sup = 0.02381   Conf = 1.00000     Language=Python Interpreted    <--    Memory=]11276.0000 : 11988.0000]
+Sup = 0.02381   Conf = 1.00000     Language=Python Interpreted    <--    Memory=]13120.0000 : 14308.0000]
+Sup = 0.01511   Conf = 1.00000     Language=Python Interpreted    <--    Core=]16.1898 : 22.0386]  &  Time=]1042.0000 : 1465.0000]
+Sup = 0.01470   Conf = 1.00000     Language=Python Interpreted    <--    Package=]17.3096 : 23.4535]
+Sup = 0.02381   Conf = 1.00000     Program=BubbleSort    <--    Memory=]8858.0000 : 9830.0000]
+Sup = 0.02381   Conf = 1.00000     Program=BubbleSort    <--    Cost=703
+Sup = 0.02381   Conf = 1.00000     Program=BubbleSort    <--    Cost=514
+Sup = 0.02381   Conf = 1.00000     Program=BubbleSort    <--    Cost=1016
+Sup = 0.02381   Conf = 1.00000     Program=BubbleSort    <--    Cost=871
+Sup = 0.02381   Conf = 1.00000     Program=BubbleSort    <--    Cost=397
+Sup = 0.02381   Conf = 1.00000     Program=BubbleSort    <--    Cost=632  &  Memory=]2758.0000 : 4164.0000]
+Sup = 0.02381   Conf = 1.00000     Program=BubbleSort    <--    Language=Python Compilled  &  Cost=328
+Sup = 0.02381   Conf = 1.00000     Program=BubbleSort    <--    Language=Haskell  &  Cost=444
+Sup = 0.02381   Conf = 1.00000     Program=BubbleSort    <--    Language=JavaScript  &  Cost=561
+Sup = 0.02381   Conf = 1.00000     Program=BubbleSort    <--    Language=Kotlin  &  Cost=561
+Sup = 0.02381   Conf = 1.00000     Program=BubbleSort    <--    Language=Python Interpreted  &  Cost=328
+Sup = 0.02381   Conf = 1.00000     Program=BubbleSort    <--    Language=Go  &  Cost=444
+Sup = 0.02381   Conf = 1.00000     Program=BubbleSort    <--    Language=C++  &  Cost=632
+Sup = 0.02381   Conf = 1.00000     Program=BubbleSort    <--    Language=Java  &  Cost=632
+Sup = 0.01603   Conf = 1.00000     Program=BubbleSort    <--    Memory=]10618.0000 : 11382.0000]
+Sup = 0.01435   Conf = 1.00000     Program=BubbleSort    <--    Core=]6.0788 : 9.1209]
+Sup = 0.01140   Conf = 1.00000     Program=BubbleSort    <--    Cost=444  &  Time=]81.5000 : 104.5000]
+Sup = 0.01083   Conf = 1.00000     Program=BubbleSort    <--    Core=]0.4473 : 0.5279]  &  Cost=632  &  Memory=]26856.0000 : 27324.0000]
+Sup = 0.04762   Conf = 1.00000     Program=SelectionSort    <--    Cost=656
+Sup = 0.04762   Conf = 1.00000     Program=SelectionSort    <--    Cost=237
+Sup = 0.02381   Conf = 1.00000     Program=SelectionSort    <--    Cost=374
+Sup = 0.02381   Conf = 1.00000     Program=SelectionSort    <--    Cost=680
+Sup = 0.02381   Conf = 1.00000     Program=SelectionSort    <--    Cost=491
+Sup = 0.02381   Conf = 1.00000     Program=SelectionSort    <--    Language=Kotlin  &  Cost=538
+Sup = 0.02381   Conf = 1.00000     Program=SelectionSort    <--    Language=Prolog  &  Cost=421
+Sup = 0.02381   Conf = 1.00000     Program=SelectionSort    <--    Language=Rust  &  Cost=444
+Sup = 0.02381   Conf = 1.00000     Program=SelectionSort    <--    Cost=823  &  Language=C#
+Sup = 0.02381   Conf = 1.00000     Program=SelectionSort    <--    Cost=823  &  Memory=]14070.0000 : 16406.0000]
+Sup = 0.02381   Conf = 1.00000     Program=SelectionSort    <--    Cost=919  &  Language=C
+Sup = 0.02381   Conf = 1.00000     Program=SelectionSort    <--    Cost=919  &  Memory=]-oo : 1490.0000]
+Sup = 0.01587   Conf = 1.00000     Program=SelectionSort    <--    Memory=]80882.0000 : +oo[
+Sup = 0.01584   Conf = 1.00000     Program=SelectionSort    <--    Time=]170.5000 : 265.5000]  &  Package=]1.9826 : 4.0923]
+Sup = 0.01584   Conf = 1.00000     Program=SelectionSort    <--    Time=]170.5000 : 265.5000]  &  Core=]1.8285 : 3.8204]
+Sup = 0.01521   Conf = 1.00000     Program=SelectionSort    <--    Memory=]2062.0000 : 2758.0000]  &  Cost=444
+Sup = 0.01327   Conf = 1.00000     Program=SelectionSort    <--    Memory=]45518.0000 : 45586.0000]  &  Cost=727
+Sup = 0.01048   Conf = 1.00000     Program=SelectionSort    <--    Time=]72.5000 : 81.5000]  &  Cost=538
+Sup = 0.04762   Conf = 1.00000     Program=QuickSort    <--    Cost=775
+Sup = 0.03705   Conf = 1.00000     Program=QuickSort    <--    Core=]-oo : 0.0168]  &  Package=]-oo : 0.0313]
+Sup = 0.02381   Conf = 1.00000     Program=QuickSort    <--    Memory=]5792.0000 : 7584.0000]
+Sup = 0.02381   Conf = 1.00000     Program=QuickSort    <--    Memory=]46050.0000 : 80882.0000]
+Sup = 0.02381   Conf = 1.00000     Program=QuickSort    <--    Cost=968
+Sup = 0.02381   Conf = 1.00000     Program=QuickSort    <--    Cost=895
+Sup = 0.02381   Conf = 1.00000     Program=QuickSort    <--    Cost=992
+Sup = 0.02381   Conf = 1.00000     Program=QuickSort    <--    Cost=1285
+Sup = 0.02381   Conf = 1.00000     Program=QuickSort    <--    Language=Python Compilled  &  Cost=421
+Sup = 0.02381   Conf = 1.00000     Program=QuickSort    <--    Language=Ruby  &  Cost=561
+Sup = 0.02381   Conf = 1.00000     Program=QuickSort    <--    Language=Haskell  &  Cost=328
+Sup = 0.02381   Conf = 1.00000     Program=QuickSort    <--    Language=Python Interpreted  &  Cost=421
+Sup = 0.02381   Conf = 1.00000     Program=QuickSort    <--    Language=Prolog  &  Cost=632
+Sup = 0.02381   Conf = 1.00000     Program=QuickSort    <--    Cost=823  &  Language=Go
+Sup = 0.02381   Conf = 1.00000     Program=QuickSort    <--    Cost=919  &  Language=Java
+Sup = 0.02378   Conf = 1.00000     Program=QuickSort    <--    Cost=919  &  Memory=]26856.0000 : 27324.0000]
+Sup = 0.02175   Conf = 1.00000     Program=QuickSort    <--    Package=]-oo : 0.0313]  &  Language=C
+Sup = 0.02175   Conf = 1.00000     Program=QuickSort    <--    Package=]-oo : 0.0313]  &  Memory=]-oo : 1490.0000]
+Sup = 0.01590   Conf = 1.00000     Program=QuickSort    <--    Memory=]28282.0000 : 37326.0000]
+Sup = 0.01587   Conf = 1.00000     Program=QuickSort    <--    Cost=823  &  Package=]0.0343 : 0.0447]
+Sup = 0.01311   Conf = 1.00000     Program=QuickSort    <--    Memory=]24846.0000 : 26856.0000]
+Sup = 0.01263   Conf = 1.00000     Program=QuickSort    <--    Core=]0.0180 : 0.0204]  &  Language=Go
+Sup = 0.01263   Conf = 1.00000     Program=QuickSort    <--    Cost=823  &  Core=]0.0180 : 0.0204]
+Sup = 0.01168   Conf = 1.00000     Program=QuickSort    <--    Cost=919  &  Core=]0.4473 : 0.5279]
+Sup = 0.01098   Conf = 1.00000     Program=QuickSort    <--    Core=]0.0480 : 0.0531]  &  Time=]52.5000 : 55.5000]
