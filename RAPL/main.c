@@ -141,8 +141,6 @@ int main(int argc, char **argv)
             printf("Sleeping\n");
             sleep(1);
         }
-        sprintf(str_temp, "%.1f", temperature);
-
         fprintf(fp, "%s , ", argv[1]);
 
         rapl_before(fp, core);
@@ -184,7 +182,7 @@ int main(int argc, char **argv)
 #endif
 
         rapl_after(fp, core);
-
+        sprintf(str_temp, "%.1f", getTemperature());
 #ifdef RUNTIME
         fprintf(fp, "%G ,", time_spent);
         fprintf(fp, " %s ,", str_temp);
