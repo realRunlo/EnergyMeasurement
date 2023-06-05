@@ -13,7 +13,7 @@ lib = ctypes.CDLL('../RAPL/sensors.so')
 lib.getTemperature.restype = ctypes.c_float
 
 print("Cooling Down...")
-time.sleep(5)
+time.sleep(60*5)
 
 data = re.sub(r'#define TEMPERATURETHRESHOLD .*', f'#define TEMPERATURETHRESHOLD {lib.getTemperature()}', data)
 # Write the updated file
