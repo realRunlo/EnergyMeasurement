@@ -14,8 +14,8 @@
 #include "rapl.h"
 #include "sensors.h"
 
-#define TEMPERATURETHRESHOLD 54.66666793823242
-#define WHATTSCAP -1
+#define TEMPERATURETHRESHOLD 50.66666793823242
+#define WHATTSCAP 500
 #define RUNTIME
 
 long fib(int n)
@@ -45,40 +45,41 @@ int main(int argc, char **argv)
 
     // RAPLCAP
     raplcap rc;
-    raplcap_limit rl_short, rl_long;
-    uint32_t q, j, n, d;
-
-    // initialize
-    if (raplcap_init(&rc))
-    {
-        perror("raplcap_init");
-        return -1;
-    }
-
-    // get the number of RAPL packages
-    n = raplcap_get_num_packages(NULL);
-    if (n == 0)
-    {
-        perror("raplcap_get_num_packages");
-        return -1;
-    }
-
-    // assuming each package has the same number of die, only querying for package=0
-    d = raplcap_get_num_die(&rc, 0);
-    if (d == 0)
-    {
-        perror("raplcap_get_num_die");
-        raplcap_destroy(&rc);
-        return -1;
-    }
-
-    // for each package die, set a power cap of same limit for both long and short
-    // a time window of 0 leaves the time window unchanged
-    rl_long.watts = WHATTSCAP;
-    rl_long.seconds = 0;
-    rl_short.watts = WHATTSCAP;
-    rl_short.seconds = 0;
     if(WHATTSCAP != -1){
+        raplcap_limit rl_short, rl_long;
+        uint32_t q, j, n, d;
+
+        // initialize
+        if (raplcap_init(&rc))
+        {
+            perror("raplcap_init");
+            return -1;
+        }
+
+        // get the number of RAPL packages
+        n = raplcap_get_num_packages(NULL);
+        if (n == 0)
+        {
+            perror("raplcap_get_num_packages");
+            return -1;
+        }
+
+        // assuming each package has the same number of die, only querying for package=0
+        d = raplcap_get_num_die(&rc, 0);
+        if (d == 0)
+        {
+            perror("raplcap_get_num_die");
+            raplcap_destroy(&rc);
+            return -1;
+        }
+
+        // for each package die, set a power cap of same limit for both long and short
+        // a time window of 0 leaves the time window unchanged
+        rl_long.watts = WHATTSCAP;
+        rl_long.seconds = 0;
+        rl_short.watts = WHATTSCAP;
+        rl_short.seconds = 0;
+
         for (q = 0; q < n; q++)
         {
             for (j = 0; j < d; j++)
@@ -89,22 +90,22 @@ int main(int argc, char **argv)
                 }
             }
         }
-    }
 
+        // for each package die, enable the power caps
+        // this could be done before setting caps, at the risk of enabling unknown power cap values first
 
-    // for each package die, enable the power caps
-    // this could be done before setting caps, at the risk of enabling unknown power cap values first
-    for (q = 0; q < n; q++)
-    {
-        for (j = 0; j < d; j++)
+        for (q = 0; q < n; q++)
         {
-            if (raplcap_pd_set_zone_enabled(&rc, q, j, RAPLCAP_ZONE_PACKAGE, 1))
+            for (j = 0; j < d; j++)
             {
-                perror("raplcap_pd_set_zone_enabled");
+                if (raplcap_pd_set_zone_enabled(&rc, q, j, RAPLCAP_ZONE_PACKAGE, 1))
+                {
+                    perror("raplcap_pd_set_zone_enabled");
+                }
             }
         }
     }
-    // RAPLCAP
+    // RAPLCAP />
 
     // printf("Program to be executed: %d",argc);
     // strcpy( command, "./" );
@@ -197,9 +198,11 @@ int main(int argc, char **argv)
     fflush(stdout);
 
     // cleanup
-    if (raplcap_destroy(&rc))
-    {
-        perror("raplcap_destroy");
+    if(WHATTSCAP != -1){
+        if (raplcap_destroy(&rc))
+        {
+            perror("raplcap_destroy");
+        }
     }
     return 0;
 }

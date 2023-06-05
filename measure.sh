@@ -15,6 +15,15 @@ python3 ntimesUpdate.py $NTIMES ../Languages/Python_Interpreted/Makefile ../Lang
 
 cd ..
 
+
+#Make RAPL lib
+cd RAPL/
+rm sensors.so
+make
+
+cd ..
+      
+      
 #Make RAPL lib
 cd RAPL/
 rm sensors.so
@@ -25,24 +34,28 @@ cd ..
 echo "Size,Cost,PowerLimit,Language,Program,Package,Core,GPU,DRAM,Time,Temperature,Memory" > measurements.csv
 
 # Loop over constraint limits
-for limit in 5 10 50 100 -1
-do
-    cd Utils/
-    python3 raplCapUpdate.py $limit ../RAPL/main.c
-    cd ..
-    # Loop over size values
-    for size in 1000 2500 5000
+
+for size in 1000 2500 5000
     do
         # Update input arrays with new size
         cd Utils/
         python3 arrayUpdate.py $size ../Languages/Python_Interpreted/*.py ../Languages/Python_Compilled/*.py ../Languages/C/*.c ../Languages/Haskell/*.hs ../Languages/Java/*.java ../Languages/C++/*.cpp ../Languages/Prolog/*.pl ../Languages/Ruby/*.rb ../Languages/PHP/*.php ../Languages/Kotlin/*.kt ../Languages/JavaScript/*.js ../Languages/C#/*.cs ../Languages/Rust/*.rs ../Languages/Go/*.go
         cd ..
-
+    # Loop over size values
+    for limit in 5 10 20 50 1000
+        do
+        cd Utils/
+        python3 raplCapUpdate.py $limit ../RAPL/main.c
+        cd ..
+        #Make RAPL lib
+        cd RAPL/
+        rm sensors.so
+        make
+        cd ..
+        
         # Build and measure C programs
         cd Languages/C/
-        make
         make measure 
-
         # Append C measurement results to CSV file with size column
         for file in *.J;
             do 
