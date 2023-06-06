@@ -14,8 +14,8 @@
 #include "rapl.h"
 #include "sensors.h"
 
-#define TEMPERATURETHRESHOLD 50.66666793823242
-#define WHATTSCAP 500
+#define TEMPERATURETHRESHOLD 45.33333206176758
+#define WHATTSCAP 1000
 #define RUNTIME
 
 long fib(int n)

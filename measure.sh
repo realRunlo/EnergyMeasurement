@@ -14,22 +14,6 @@ python3 temperatureUpdate.py
 python3 ntimesUpdate.py $NTIMES ../Languages/Python_Interpreted/Makefile ../Languages/Python_Compilled/Makefile ../Languages/C/Makefile ../Languages/Haskell/Makefile ../Languages/Java/Makefile ../Languages/C++/Makefile ../Languages/Prolog/Makefile ../Languages/Ruby/Makefile ../Languages/PHP/Makefile ../Languages/Kotlin/Makefile ../Languages/JavaScript/Makefile ../Languages/C#/Makefile ../Languages/Rust/Makefile ../Languages/Go/Makefile
 
 cd ..
-
-
-#Make RAPL lib
-cd RAPL/
-rm sensors.so
-make
-
-cd ..
-      
-      
-#Make RAPL lib
-cd RAPL/
-rm sensors.so
-make
-
-cd ..
       
 echo "Size,Cost,PowerLimit,Language,Program,Package,Core,GPU,DRAM,Time,Temperature,Memory" > measurements.csv
 
