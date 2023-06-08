@@ -1,7 +1,8 @@
 ### EnergyMeasurement: Repositório da UC de Experimentação em Engenharia de Software - Ano letivo 2022/2023
-Autores: Gonçalo Pereira, Simão Cunha, Luís Silva
 
+Autores: Gonçalo Pereira, Simão Cunha, Luís Silva
 Grupo: 10
+Relatório: [aqui](https://github.com/realRunlo/EnergyMeasurement/blob/main/docs/On_the_Energy_Efficiency_of_Sorting_Algorithms.pdf)
 
 Bibliotecas necessárias:
 1. RAPL
