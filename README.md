@@ -1,14 +1,24 @@
 ## On the Energy Efficiency of Sorting Algorithms
 ### Presented in Sustrainable 2023 - Coimbra
+  <tr>
+    <td align="center">
+      <p align="center">
+        <img src="docs/images/sustrainable.png" alt="sustrainable" width="300" height="90" />
+        <img src="docs/images/uminho.png" alt="uminho" width="150" height="100" />
+        <img src="docs/images/haslab.png" alt="haslab" width="200" />
+      </p>
+    </td>
+  </tr>
+
 * Presentation: [here](https://github.com/simaocunha71/EnergyMeasurement/blob/main/docs/presentation.pdf)
 * Poster: [here](https://github.com/simaocunha71/EnergyMeasurement/blob/main/docs/poster.pdf)
+* Report: [here](https://github.com/simaocunha71/EnergyMeasurement/blob/main/docs/On_the_Energy_Efficiency_of_Sorting_Algorithms.pdf) <br>
 
 ### Authors
 * [Gonçalo Pereira](https://github.com/realRunlo)
 * [Simão Cunha](https://github.com/simaocunha71)
 * [Luís Silva](https://github.com/LuisMPSilva01) 
 
-Report: [here](https://github.com/simaocunha71/EnergyMeasurement/blob/main/docs/On_the_Energy_Efficiency_of_Sorting_Algorithms.pdf) <br>
 
 ### Required libraries
 1. RAPL
