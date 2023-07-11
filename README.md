@@ -1,33 +1,40 @@
-### EnergyMeasurement: Repositório da UC de Experimentação em Engenharia de Software - Ano letivo 2022/2023
+## On the Energy Efficiency of Sorting Algorithms
+### Presented in Sustrainable 2023 - Coimbra
+* Presentation: [here](https://github.com/simaocunha71/EnergyMeasurement/blob/main/docs/presentation.pdf)
+* Poster: [here](https://github.com/simaocunha71/EnergyMeasurement/blob/main/docs/poster.pdf)
 
-Autores: Gonçalo Pereira, Simão Cunha, Luís Silva <br>
-Grupo: 10 <br> <br>
-Relatório: [aqui](https://github.com/realRunlo/EnergyMeasurement/blob/main/docs/On_the_Energy_Efficiency_of_Sorting_Algorithms.pdf) <br>
+### Authors
+* [Gonçalo Pereira](https://github.com/realRunlo)
+* [Simão Cunha](https://github.com/simaocunha71)
+* [Luís Silva](https://github.com/LuisMPSilva01) 
 
-Bibliotecas necessárias:
+Report: [here](https://github.com/simaocunha71/EnergyMeasurement/blob/main/docs/On_the_Energy_Efficiency_of_Sorting_Algorithms.pdf) <br>
+
+### Required libraries
 1. RAPL
 2. lm-sensors
 3. Powercap
 4. Raplcap
 
-Para instalar as bibliotecas necessárias correr a script:
+### Setup
+In order to install all the required libraries, you should execute the script:
 
 ```sudo sh setup.sh```
 
-Para gerar o csv correr a script:
+Then, to generate the CSV file, execute the script:
 
 ```sh measurements.sh```
 
-Significado das colunas do ficheiro csv:
-* **Size** : Tamanho da lista argumento do algoritmo de ordenação;
-* **Language** : Linguagem de programação do algoritmo de ordenação;
-* **Program** : Nome do algoritmo de ordenação;
-* **Package** : Energia consumida por todo o socket (consumo de todos os cores, gráficas e componentes fora dos cores);
-* **Core** : Energia consumida por todos os cores e caches;
-* **GPU** : Energia consumida pelo GPU;
-* **DRAM** : Estima a energia consumida pela RAM;
-* **Time** : Tempo de execução do algoritmo(em ms)
-* **Temperature** : Temperatura média de todos os cores (em ºC);
-* **Memory** : Memória física total atribuída à execução do algoritmo (em KBytes);
-* **Cost** : Custo de desenvolvimento do código (em $);
-* **PowerLimit** : Limitação da potência dos cores (em Watts)
+### Meaning of the CSV file columns
+* **Size** : Length of the argument list used by the sorting algorithm;
+* **Language** : Programming language of the sorting algorithm;
+* **Program** : Name of the sorting algorithm;
+* **Package** : Energy consumption of the entire socket- all cores consumption, GPU e external core components);
+* **Core** : Energy consumption by all cores and caches;
+* **GPU** : Energy consumption by the GPU;
+* **DRAM** : Energy consumption by the RAM;
+* **Time** : Algorithm's execution time (in ms);
+* **Temperature** : Mean temperature in all cores (in ºC);
+* **Memory** : Total physical memory assigned to the algorithm execution (in KBytes);
+* **Cost** : Development cost (in $);
+* **PowerLimit** : Power cap of the cores (in Watts)
